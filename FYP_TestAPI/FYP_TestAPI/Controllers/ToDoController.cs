@@ -17,7 +17,7 @@ namespace FYP_TestAPI.Controllers
 
         public ToDoController(TodoContext context)
         {
-            _context = context;
+            /*_context = context;
 
             if (_context.TodoItems.Count() == 0)
             {
@@ -25,7 +25,7 @@ namespace FYP_TestAPI.Controllers
                 // which means you can't delete all TodoItems.
                 _context.TodoItems.Add(new TodoItem { Name = "Bobs dovolova" });
                 _context.SaveChanges();
-            }
+            }*/
         }
 
         // GET: api/Todo
