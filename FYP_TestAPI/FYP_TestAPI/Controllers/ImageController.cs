@@ -21,7 +21,6 @@ namespace FYP_TestAPI.Controllers
             var actual_Picture = photo.photo;
             //if (actual_Picture != null)
             //{
-            System.IO.Directory.CreateDirectory("C:\\Users\\donal\\source\\repos\\FYP_WebApi\\FYP_TestAPI\\FYP_TestAPI\\wwwroot\\images");
                 if (actual_Picture.Length > 0)
                 {
                     var filePath = Path.Combine("wwwroot/images", actual_Picture.FileName);
