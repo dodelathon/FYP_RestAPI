@@ -5,37 +5,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using FYP_TestAPI.Models;
 
 using Microsoft.AspNetCore.Http;
 namespace FYP_TestAPI.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Image")]
-    public class ImageController : Controller
+    
+    public class ImageController : ControllerBase
     {
-        private readonly IHostingEnvironment _environment;
-
-        public ImageController(IHostingEnvironment environment)
-
-        {
-            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
-        }
 
         // POST: api/Imag
-        [HttpPost]
-        public async Task Post(IFormFile file)
+        [HttpPost("api/Image")]
+        public ActionResult Post([FromForm]Image photo)
         {
-            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
-            if (file.Length > 0)
-            {
-                using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
-
+            var actual_Picture = photo.photo;
+            //if (actual_Picture != null)
+            //{
+            System.IO.Directory.CreateDirectory("C:\\Users\\donal\\source\\repos\\FYP_WebApi\\FYP_TestAPI\\FYP_TestAPI\\wwwroot\\images");
+                if (actual_Picture.Length > 0)
                 {
-
-                    await file.CopyToAsync(fileStream);
-
+                    var filePath = Path.Combine("wwwroot/images", actual_Picture.FileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                       actual_Picture.CopyTo(fileStream);
+                    }
                 }
-            }
+            //}
+            return Ok(new { status = true, message = "Photo Posted Successfully" });
         }
     }
 }
