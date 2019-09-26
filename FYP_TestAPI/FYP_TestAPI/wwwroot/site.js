@@ -132,3 +132,11 @@ $(".my-form").on("submit", function () {
 function closeInput() {
 	$("#spoiler").css({ display: "none" });
 }
+
+function refreshIt()
+{
+	if (!document.images)
+		return;
+	document.images.item(0) = 'images/image.jpg' + Math.random();
+	setTimeout('refreshIt()',1000); // refresh every 5 secs
+}
