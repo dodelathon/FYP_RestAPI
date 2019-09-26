@@ -133,10 +133,13 @@ function closeInput() {
 	$("#spoiler").css({ display: "none" });
 }
 
-function refreshIt()
+function refreshIt() {
 {
-	if (!document.images)
-		return;
-	document.images.item(0) = 'images/image.jpg';
-	setTimeout('refreshIt()',1000); // refresh every 5 secs
+		if (!document.images)
+		{ }
+		else
+		{
+			document.images.item(0) = 'images/image.jpg';
+			setTimeout('refreshIt()', 1000); // refresh every 5 secs
+		}
 }
