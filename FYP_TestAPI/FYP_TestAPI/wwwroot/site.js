@@ -137,6 +137,6 @@ function refreshIt()
 {
 	if (!document.images)
 		return;
-	document.images.item(0) = 'images/image.jpg' + Math.random();
+	document.images.item(0) = 'images/image.jpg';
 	setTimeout('refreshIt()',1000); // refresh every 5 secs
 }
