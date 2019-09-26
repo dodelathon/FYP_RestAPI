@@ -17,9 +17,9 @@ namespace FYP_TestAPI.Controllers
 
         public ToDoController(TodoContext context)
         {
-            /*_context = context;
+            _context = context;
 
-            if (_context.TodoItems.Count() == 0)
+           /* if (_context.TodoItems.Count() == 0)
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.

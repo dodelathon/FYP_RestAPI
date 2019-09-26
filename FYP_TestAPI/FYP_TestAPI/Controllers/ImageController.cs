@@ -6,31 +6,38 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using FYP_TestAPI.Models;
-
 using Microsoft.AspNetCore.Http;
+
 namespace FYP_TestAPI.Controllers
 {
     
     public class ImageController : ControllerBase
     {
 
+        private IHostingEnvironment hostingEnvironment;
+
+        public ImageController(IHostingEnvironment env)
+        {
+            hostingEnvironment = env;
+        }
+
         // POST: api/Imag
         [HttpPost("api/Image")]
-        public ActionResult Post([FromForm]Image photo)
+        public async Task Post([FromForm]Image photo)
         {
             var actual_Picture = photo.photo;
             //if (actual_Picture != null)
             //{
                 if (actual_Picture.Length > 0)
                 {
-                    var filePath = Path.Combine("wwwroot/images", actual_Picture.FileName);
+                    var filePath = hostingEnvironment.WebRootPath + actual_Picture.FileName;
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                       actual_Picture.CopyTo(fileStream);
+                       await actual_Picture.CopyToAsync(fileStream);
                     }
                 }
             //}
-            return Ok(new { status = true, message = "Photo Posted Successfully" });
+            //return Ok(new { status = true, message = "Photo Posted Successfully" });
         }
     }
 }
