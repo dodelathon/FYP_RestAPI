@@ -133,7 +133,7 @@ function closeInput() {
 	$("#spoiler").css({ display: "none" });
 }
 
-function refreshIt() {
+function refreshIt() 
 {
 		if (!document.images)
 		{ }
