@@ -136,9 +136,7 @@ function closeInput() {
 function refreshIt() 
 {
 		if (!document.images)
-		{ }
-		else
-		{
+		{ } else {
 			document.images.item(0) = 'images/image.jpg';
 			setTimeout('refreshIt()', 1000); // refresh every 5 secs
 		}
