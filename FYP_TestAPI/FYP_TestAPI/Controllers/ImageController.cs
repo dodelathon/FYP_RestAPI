@@ -30,7 +30,7 @@ namespace FYP_TestAPI.Controllers
             //{
                 if (actual_Picture.Length > 0)
                 {
-                    var filePath = hostingEnvironment.WebRootPath + actual_Picture.FileName;
+                    var filePath = "wwwroot" + actual_Picture.FileName;
                 Console.WriteLine(filePath);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
