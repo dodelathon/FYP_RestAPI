@@ -137,7 +137,7 @@ function refreshIt()
 {
 		if (document.images)
 		{
-			document.images.namedItem("Stream") = 'images/image.jpg';
+			document.images.namedItem("Stream").src = 'images/image.jpg';
 			setTimeout('refreshIt()', 1000); // refresh every 5 secs
 		} 
 }
