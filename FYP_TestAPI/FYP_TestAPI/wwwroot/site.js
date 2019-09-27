@@ -139,5 +139,5 @@ function refreshIt()
 	timestamp = (new Date()).getTime(),
 	newUrl = source + '?_=' + timestamp;
 	document.getElementById("Stream").src = newUrl;
-	setTimeout(refreshIt, 2000);
+	setTimeout(refreshIt, 5000);
 }
