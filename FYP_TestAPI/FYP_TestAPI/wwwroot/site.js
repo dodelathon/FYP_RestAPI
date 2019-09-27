@@ -135,9 +135,9 @@ function closeInput() {
 
 function refreshIt() 
 {
-		if (document.images)
-		{
-			document.images.namedItem("Stream").src = 'images/image.jpg';
-			setTimeout('refreshIt()', 1000); // refresh every 5 secs
-		} 
+	var source = 'https://donal-doherty.com/images/image.jpg',
+	timestamp = (new Date()).getTime(),
+	newUrl = source + '?_=' + timestamp;
+	document.getElementById("Stream").src = newUrl;
+	setTimeout(refreshIt, 1000);
 }
