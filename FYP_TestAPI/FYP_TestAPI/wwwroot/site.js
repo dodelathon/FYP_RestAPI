@@ -135,7 +135,7 @@ function closeInput() {
 
 function refreshIt() 
 {
-	var source = 'https://donal-doherty.com/images/image.jpg',
+	var source = 'images/image.jpg',
 	timestamp = (new Date()).getTime(),
 	newUrl = source + '?_=' + timestamp;
 	document.getElementById("Stream").src = newUrl;
