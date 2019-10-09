@@ -10,36 +10,48 @@ using Microsoft.AspNetCore.Http;
 
 namespace FYP_TestAPI.Controllers
 {
-    
+
     public class ImageController : ControllerBase
     {
 
         private IHostingEnvironment hostingEnvironment;
+        private string filePath = "wwwroot/images/";
 
         public ImageController(IHostingEnvironment env)
         {
             hostingEnvironment = env;
+            Console.WriteLine(env.EnvironmentName);
         }
 
         // POST: api/Imag
-        [HttpPost("api/Image")]
+        [HttpPost("api/Image/Upload")]
         public async Task Post([FromForm]Image photo)
         {
             var actual_Picture = photo.photo;
             //if (actual_Picture != null)
             //{
-                if (actual_Picture.Length > 0)
+            if (actual_Picture.Length > 0)
+            {
+                if (!Directory.Exists(filePath))
                 {
-                    var filePath = "wwwroot/images/" + actual_Picture.FileName;
-                    System.IO.File.SetAttributes(filePath, FileAttributes.Normal);
-                    Console.WriteLine(filePath);
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                       await actual_Picture.CopyToAsync(fileStream);
-                    }
+                    Directory.CreateDirectory(filePath);
                 }
+                filePath += actual_Picture.FileName;
+                System.IO.File.SetAttributes(filePath, FileAttributes.Normal);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await actual_Picture.CopyToAsync(fileStream);
+                }
+            }
             //}
             //return Ok(new { status = true, message = "Photo Posted Successfully" });
         }
+
+        [HttpGet("api/image/GetImage")]
+        public IActionResult GetImage(string DeviceString)
+        {
+            Byte[] image = System.IO.File.ReadAllBytes(filePath + "image1.jpg");
+            return File(image, "image/jpeg");
+        }   
     }
 }
