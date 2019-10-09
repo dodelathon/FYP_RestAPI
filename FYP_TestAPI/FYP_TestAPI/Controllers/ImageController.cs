@@ -50,7 +50,7 @@ namespace FYP_TestAPI.Controllers
         [HttpGet("api/image/GetImage")]
         public IActionResult GetImage(string DeviceString)
         {
-            Byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg");
+            Byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg"); 
             return File(image, "image/jpeg");
         }   
     }
