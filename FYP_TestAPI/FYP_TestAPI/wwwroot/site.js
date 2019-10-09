@@ -136,9 +136,8 @@ function closeInput() {
 function refreshIt() 
 {
 	var source = "https://donal-doherty.com/api/image/GetImage?DeviceString=bob",
-	timestamp = (new Date()).getTime(),
-	newUrl = source + '?_=' + timestamp;
-	document.getElementById("Stream").src = source;
+	timestamp = (new Date()).getTime();
+	document.getElementById("Stream").src = source + timestamp;
 	console.log("HEreererer");
 	//setTimeout(refreshIt, 10000);
 }
