@@ -139,5 +139,6 @@ function refreshIt()
 	timestamp = (new Date()).getTime(),
 	newUrl = source + '?_=' + timestamp;
 	document.getElementById("Stream").src = source;
+	console.log("HEreererer");
 	setTimeout(refreshIt, 10000);
 }
