@@ -8,10 +8,22 @@
 		<script src="site.js"></script>
 	</head>
 	<body>
-		<H1> MK06 - 3D Printer Monitor </H1>
-
-		<img src="https://donal-doherty.com/api/image/GetImage?DeviceString=bob" id="Stream" onload="setTimeout(refreshIt,10000)" />
-
+		<div id="Header_Top_Page">
+			<H1> MK06 - 3D Printer Monitor </H1>
+		</div>
+		<div id="Main_Body">
+			<div id="Image_Container">
+				<img src="https://donal-doherty.com/api/image/GetImage?DeviceString=bob" id="Stream" onload="setTimeout(refreshIt,10000)" />
+			</div>
+			<table id="Stats_Holder">
+				<tr>
+					<td><h3>hello... its me</h3></td>
+				</tr>
+				<tr>
+					<td><h3>ive been waiting for you to call me something about adele </h3></td>
+				</tr>
+			</table>
+		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 				crossorigin="anonymous"></script>
