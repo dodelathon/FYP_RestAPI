@@ -22,8 +22,21 @@ td {
 	padding: 5px;
 }
 
-.Main_Body {
+#Header_Top_Page {
+	display:flex;
+	flex-wrap:nowrap;
+	flex-direction:row;
+	justify-content:center;
+}
+
+#Main_Body {
 	display:flex;
 	flex-wrap:wrap;
+	flex-direction:row;
+	justify-content:center;
+	border:solid;
+}
 
+#Main_Body #Image_Container {
+	justify-content:flex-start;
 }
