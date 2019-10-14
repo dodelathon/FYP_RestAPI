@@ -1,4 +1,4 @@
-﻿const uri = "api/todo";
+﻿/*const uri = "api/todo";
 let todos = null;
 function getCount(data) {
 	const el = $("#counter");
@@ -131,7 +131,7 @@ $(".my-form").on("submit", function () {
 
 function closeInput() {
 	$("#spoiler").css({ display: "none" });
-}
+}*/
 
 function refreshIt() 
 {
