@@ -21,3 +21,9 @@ td {
 	border: 1px solid;
 	padding: 5px;
 }
+
+.Main_Body {
+	display:flex;
+	flex-wrap:wrap;
+
+}
