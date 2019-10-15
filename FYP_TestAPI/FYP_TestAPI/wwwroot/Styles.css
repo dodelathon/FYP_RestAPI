@@ -23,20 +23,37 @@ td {
 }
 
 #Header_Top_Page {
-	display:flex;
-	flex-wrap:nowrap;
-	flex-direction:row;
-	justify-content:center;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: center;
 }
 
 #Main_Body {
-	display:flex;
-	flex-wrap:wrap;
-	flex-direction:row;
-	justify-content:center;
-	border:solid;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: flex-start;
 }
 
-#Main_Body #Image_Container {
-	justify-content:flex-start;
+#Main_Body #Spacer_1 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#Main_Body #Stats_Holder {
+	display: flex;
+	border: solid;
+	border-width: medium;
+}
+
+#Header_Setup #Stream_Header_Container {
+}
+
+#Main_Body #Image_Container #Stream{
+	/*display: block;*/
+	vertical-align: bottom;
+	border: solid;
+	border-width: medium;
+	/*border-bottom-width:0px;*/
 }

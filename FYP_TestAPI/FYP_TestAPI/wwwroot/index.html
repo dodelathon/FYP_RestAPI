@@ -8,16 +8,43 @@
 		<script src="site.js"></script>
 	</head>
 	<body>
-		<div id="Header_Top_Page">
-			<H1> MK06 - 3D Printer Monitor </H1>
+		<div id="Header_Setup">
+			<div id="Header_Top_Page">
+				<H1> MK06 - 3D Printer Monitor </H1>
+			</div>
+			<div id="Header_Input_Selection">
+				<form id="Watcher_Selector">
+					<select id="Device_Selector">
+						<option value="1">d1</option>
+						<option value="2">d2</option>
+						<option value="3">d3</option>
+						<option value="4">d4</option>
+					</select>
+					<input type="submit" id="Submit_Btn_Mainpage" value="Submit" />
+				</form>
+			</div>
+			<div id="Stream_Header_Container">
+				<h3>Camera Stream</h3>
+			</div>
 		</div>
 		<div id="Main_Body">
 			<div id="Image_Container">
-				<img src="https://donal-doherty.com/api/image/GetImage?DeviceString=bob" id="Stream" onload="setTimeout(refreshIt,10000)" />
+				<img src="https://donal-doherty.com/api/image/GetImage?DeviceString=bob" id="Stream" onload="setTimeout(refreshIt,10000)"/>
+			</div>
+			<div id="Spacer_1">
 			</div>
 			<table id="Stats_Holder">
 				<tr>
 					<td><h3>Stats go here</h3></td>
+				</tr>
+				<tr>
+					<td><h3>Stats go here </h3></td>
+				</tr>
+				<tr>
+					<td><h3>Stats go here </h3></td>
+				</tr>
+				<tr>
+					<td><h3>Stats go here </h3></td>
 				</tr>
 				<tr>
 					<td><h3>Stats go here </h3></td>
