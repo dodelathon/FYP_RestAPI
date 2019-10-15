@@ -51,7 +51,7 @@ td {
 }
 
 #Main_Body #Image_Container #Stream{
-	/*display: block;*/
+	display: flex;
 	vertical-align: bottom;
 	border: solid;
 	border-width: medium;
