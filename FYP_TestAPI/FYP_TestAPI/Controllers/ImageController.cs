@@ -10,24 +10,26 @@ using Microsoft.AspNetCore.Http;
 
 namespace FYP_TestAPI.Controllers
 {
-
+    [Route("api/Image/")]
+    [ApiController]
     public class ImageController : ControllerBase
     {
 
         private IHostingEnvironment hostingEnvironment;
-        private string filePath = "wwwroot/images/";
+        private string filePath;
 
         public ImageController(IHostingEnvironment env)
         {
             hostingEnvironment = env;
+            filePath = "wwwroot/images/";
             Console.WriteLine(env.EnvironmentName);
         }
 
         // POST: api/Imag
         [HttpPost("api/Image/Upload")]
-        public async Task Post([FromForm]Image photo)
+        public async Task RecieveImage([FromForm]Image recieved)
         {
-            var actual_Picture = photo.photo;
+            var actual_Picture = recieved.photo;
             //if (actual_Picture != null)
             //{
             if (actual_Picture.Length > 0)

@@ -47,8 +47,8 @@ td {
 	border-width: medium;
 }
 
-#Header_Setup #Stream_Header_Container {
-}
+/*#Header_Setup #Stream_Header_Container {
+}*/
 
 #Main_Body #Image_Container #Stream{
 	display: flex;
