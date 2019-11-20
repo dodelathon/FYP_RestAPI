@@ -21,7 +21,6 @@ namespace CS4227_Database_API.Models.DBContexts
         {
             ConnectionString = cString;
             conn = GetConnection();
-            conn.Open();
         }
 
         private MySqlConnection GetConnection()
@@ -155,6 +154,7 @@ namespace CS4227_Database_API.Models.DBContexts
         #region Initialization_Area
         private void Setter(string Table, List<IDBContainer> list)
         {
+            conn.Open();
             switch (Table)
             {
                 case "Leaderboard": Factory = Factories.Abstract_Factories.DBObjectAbstractFactory.GetFactory("Leaderboard"); interaction = new LeaderboardInteraction(conn, Factory, list); break;
@@ -165,6 +165,7 @@ namespace CS4227_Database_API.Models.DBContexts
 
         private void Setter(string Table)
         {
+            conn.Open();
             switch (Table)
             {
                 case "Leaderboard": Factory = Factories.Abstract_Factories.DBObjectAbstractFactory.GetFactory("Leaderboard"); interaction = new LeaderboardInteraction(conn, Factory); break;
