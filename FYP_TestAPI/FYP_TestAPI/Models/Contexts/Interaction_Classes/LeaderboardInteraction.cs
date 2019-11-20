@@ -179,7 +179,7 @@ namespace CS4227_Database_API.Models.DBContexts.Interaction_Classes
         private bool Exists(IDBContainer Value)
         {
             LeaderboardObject temp = (LeaderboardObject)Value;
-            MySqlCommand cmd = new MySqlCommand("select * from LeaderBoard where PlayerName = @name;", conn);
+            MySqlCommand cmd = new MySqlCommand("select * from Leaderboard where PlayerName = @name;", conn);
             List<IDBContainer> containers = new List<IDBContainer>();
             cmd.Parameters.AddWithValue("@name", temp.PlayerName);
             cmd.Prepare();
