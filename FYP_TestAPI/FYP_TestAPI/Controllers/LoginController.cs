@@ -88,7 +88,10 @@ namespace CS4227_Database_API.Controllers
                     Console.WriteLine("res not 0");
                     if (((LoginObject)res[0]).Pass.Equals(((LoginObject)temp).Pass))
                     {
-                        Console.WriteLine("We logging in boi");
+                        foreach (LoginObject log in res)
+                        {
+                            log.Pass = "";
+                        }
                         return res;
                     }
                 }
