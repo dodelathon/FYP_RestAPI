@@ -20,7 +20,7 @@ namespace FYP_TestAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<FeederDevice>> GetTodoItems()
+        public ActionResult<IEnumerable<FeederDevice>> GetAllDevices()
         {
             return _context.GetAllDevices();
         }
