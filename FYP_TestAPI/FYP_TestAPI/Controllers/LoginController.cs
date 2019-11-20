@@ -97,9 +97,11 @@ namespace CS4227_Database_API.Controllers
                 }
                 return null;      
             }
-            catch
+            catch(Exception e)
             {
                 Console.WriteLine("We broke");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
                 return null;
             }
         }
