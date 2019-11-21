@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using CS4227_Database_API.Models.Containers;
 using CS4227_Database_API.Models.DBContexts;
 using CS4227_Database_API.Factories.Abstract_Factories;
+using System.Security.Cryptography;
 
 namespace CS4227_Database_API.Controllers
 {
@@ -86,14 +87,23 @@ namespace CS4227_Database_API.Controllers
                 if (res.Count != 0 )
                 {
                     Console.WriteLine("res not 0");
-                    if (((LoginObject)res[0]).Pass.Equals(((LoginObject)temp).Pass))
+                    byte[] hashBytes = Convert.FromBase64String(((LoginObject)res[0]).Pass);
+                    byte[] salt = new byte[16];
+                    Array.Copy(hashBytes, 0, salt, 0, 16);
+                    var pbkdf2 = new Rfc2898DeriveBytes(Pass, salt, 10000);
+                    byte[] hash = pbkdf2.GetBytes(20);
+                    for (int i = 0; i < 20; i++)
                     {
-                        foreach (LoginObject log in res)
+                        if (hashBytes[i + 16] != hash[i])
                         {
-                            log.Pass = "";
+                            return null;
                         }
-                        return res;
                     }
+                    foreach (LoginObject log in res)
+                    {
+                        log.Pass = "";
+                    }
+                    return res;
                 }
                 return null;      
             }
