@@ -35,10 +35,12 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table, list);
                 interaction.GetAll();
+                conn.Close();
                 return list;
             }
             catch(Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -50,10 +52,12 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table, list);
                 interaction.GetMultipleEntries (values);
+                conn.Close();
                 return list;
             }
             catch (Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -65,10 +69,12 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table,list);
                 interaction.GetPlayerEntry(value);
+                conn.Close();
                 return list;
             }
             catch(Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -79,9 +85,11 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table);
                 interaction.AddEntry(Value);
+                conn.Close();
             }
             catch(Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -92,9 +100,11 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table);
                 interaction.AddEntry(Values);
+                conn.Close();
             }
             catch (Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -105,9 +115,11 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table);
                 interaction.UpdateEntry(Value);
+                conn.Close();
             }
             catch (Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -118,10 +130,12 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table);
                 interaction.UpdateEntry(Values);
+                conn.Close();
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                conn.Close();
+                throw new Exception(e.Message);               
             }
         }
 
@@ -131,9 +145,11 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table);
                 interaction.DeleteEntry(Value);
+                conn.Close();
             }
             catch (Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
@@ -144,9 +160,11 @@ namespace CS4227_Database_API.Models.DBContexts
             {
                 Setter(Table);
                 interaction.DeleteEntry(Values);
+                conn.Close();
             }
             catch (Exception e)
             {
+                conn.Close();
                 throw new Exception(e.Message);
             }
         }
