@@ -103,6 +103,7 @@ namespace CS4227_Database_API.Controllers
                     {
                         log.Pass = "";
                     }
+                    Console.WriteLine("Logging in");
                     return res;
                 }
                 return null;      
