@@ -96,6 +96,7 @@ namespace CS4227_Database_API.Controllers
                     {
                         if (hashBytes[i + 16] != hash[i])
                         {
+                            Console.WriteLine(i);
                             return null;
                         }
                     }
