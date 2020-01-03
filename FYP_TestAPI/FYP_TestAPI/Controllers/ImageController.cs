@@ -21,12 +21,12 @@ namespace FYP_TestAPI.Controllers
         public ImageController(IHostingEnvironment env)
         {
             hostingEnvironment = env;
-            filePath = "wwwroot/images/";
+            filePath = "wwwroot/Images/";
             Console.WriteLine(env.EnvironmentName);
         }
 
         // POST: api/Imag
-        [HttpPost("api/Image/Upload")]
+        [HttpPost("Upload")]
         public async Task RecieveImage([FromForm]Image recieved)
         {
             var actual_Picture = recieved.photo;
@@ -49,9 +49,10 @@ namespace FYP_TestAPI.Controllers
             //return Ok(new { status = true, message = "Photo Posted Successfully" });
         }
 
-        [HttpGet("api/Image/GetImage")]
-        public IActionResult GetImage()
+        [HttpGet("GetImage")]
+        public IActionResult GetImage(string Device)
         {
+            Console.WriteLine(Device);
             Byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg"); 
             return File(image, "image/jpeg");
         }   
