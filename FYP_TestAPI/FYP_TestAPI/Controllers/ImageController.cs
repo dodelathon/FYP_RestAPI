@@ -21,7 +21,7 @@ namespace FYP_TestAPI.Controllers
         public ImageController(IHostingEnvironment env)
         {
             hostingEnvironment = env;
-            filePath = "wwwroot/Images/";
+            filePath = "Images/";
             Console.WriteLine(env.EnvironmentName);
         }
 
