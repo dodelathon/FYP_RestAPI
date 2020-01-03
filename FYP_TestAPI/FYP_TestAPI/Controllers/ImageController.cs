@@ -49,7 +49,7 @@ namespace FYP_TestAPI.Controllers
             //return Ok(new { status = true, message = "Photo Posted Successfully" });
         }
 
-        [HttpGet("api/image/GetImage")]
+        [HttpGet("api/Image/GetImage")]
         public IActionResult GetImage()
         {
             Byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg"); 
