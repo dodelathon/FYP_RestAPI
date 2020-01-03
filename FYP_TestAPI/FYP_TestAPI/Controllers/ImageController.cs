@@ -22,7 +22,7 @@ namespace FYP_TestAPI.Controllers
         {
             hostingEnvironment = env;
             filePath = "Images/";
-            Console.WriteLine(env.EnvironmentName);
+            //Console.WriteLine(env.EnvironmentName);
         }
 
         // POST: api/Imag
