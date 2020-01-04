@@ -21,7 +21,7 @@ namespace FYP_TestAPI.Controllers
         public ImageController(IHostingEnvironment env)
         {
             hostingEnvironment = env;
-            filePath = "Images/";
+            filePath = "images/";
             //Console.WriteLine(env.EnvironmentName);
         }
 
@@ -53,7 +53,7 @@ namespace FYP_TestAPI.Controllers
         public IActionResult GetImage(string Device)
         {
             Console.WriteLine(Device);
-            Byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg"); 
+            byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg"); 
             return File(image, "image/jpeg");
         }   
     }
