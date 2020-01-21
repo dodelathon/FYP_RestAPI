@@ -138,6 +138,5 @@ function refreshIt()
 	var source = "https://donal-doherty.com/api/image/GetImage?Device=bob#",
 	timestamp = (new Date()).getTime();
 	document.getElementById("Stream").src = source + timestamp;
-	console.log("HEreererer");
 	//setTimeout(refreshIt, 10000);
 }
