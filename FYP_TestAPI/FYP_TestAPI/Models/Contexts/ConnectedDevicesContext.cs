@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using FYP_TestAPI.Models.Containers;
 
-namespace FYP_TestAPI.Models
+namespace FYP_TestAPI.Models.Contexts
 {
     public class ConnectedDevicesContext
     {

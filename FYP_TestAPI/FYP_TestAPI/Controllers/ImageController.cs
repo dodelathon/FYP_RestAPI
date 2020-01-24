@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using FYP_TestAPI.Models;
+using FYP_TestAPI.Models.Containers;
 using Microsoft.AspNetCore.Http;
 
 namespace FYP_TestAPI.Controllers
@@ -27,7 +27,9 @@ namespace FYP_TestAPI.Controllers
 
         // POST: api/Imag
         [HttpPost("Upload")]
-        public async Task RecieveImage([FromForm]Image recieved)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+        public async Task<IActionResult> RecieveImage([FromForm]Image recieved)
         {
             var actual_Picture = recieved.photo;
             //if (actual_Picture != null)
@@ -44,17 +46,30 @@ namespace FYP_TestAPI.Controllers
                 {
                     await actual_Picture.CopyToAsync(fileStream);
                 }
+                return Ok(new { status = true, message = "Photo Posted Successfully" });
             }
-            //}
-            //return Ok(new { status = true, message = "Photo Posted Successfully" });
+            else
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable) ;
+            }
+                      
         }
 
         [HttpGet("GetImage")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetImage(string Device)
         {
-            Console.WriteLine(Device);
-            byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg"); 
-            return File(image, "image/jpeg");
+            if (!(Directory.Exists(filePath + "/" + Device)))
+            { 
+                return NotFound("Device is not Registered or is not sending Images!");
+            }
+            else
+            {
+                Console.WriteLine(Device);
+                byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg");
+                return Ok(File(image, "image/jpeg"));
+            }
         }   
     }
 }
