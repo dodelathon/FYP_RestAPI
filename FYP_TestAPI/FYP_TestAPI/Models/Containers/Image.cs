@@ -9,6 +9,6 @@ namespace FYP_TestAPI.Models.Containers
     public class Image
     {
         public IFormFile photo { get; set; }
-        public string _DeviceName { get; set; }
+        public string _DevID { get; set; }
     }
 }

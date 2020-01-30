@@ -22,22 +22,14 @@ namespace FYP_TestAPI.Controllers
         }
 
         [HttpGet("GetAllDevices")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<FeederDevice>> GetAllDevices()
+        public IActionResult GetAllDevices()
         {
-            try
-            {
-                return Ok(_context.GetAllDevices());
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+
+            return Ok(_context.GetAllDevices());
         }
 
-        [HttpPut("UpdateDeviceStats")]
-        public ActionResult UpdateStats()
+        [HttpPost("UpdateDeviceStats")]
+        public IActionResult UpdateStats()
         {
             try
             {

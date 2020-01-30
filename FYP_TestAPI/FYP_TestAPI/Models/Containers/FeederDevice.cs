@@ -10,5 +10,6 @@ namespace FYP_TestAPI.Models.Containers
     {
         public int DeviceID { get; set; }
         public string Device_Name { get; set; }
+        public string UUID { get; set; }
     }
 }
