@@ -11,7 +11,7 @@ using FYP_TestAPI.Models.Containers;
 
 namespace FYP_TestAPI.Controllers
 {
-    [Route("api/DeviceRegistration")]
+    [Route("api/DeviceRegistration/")]
     [ApiController]
     public class DeviceRegistrationController : ControllerBase
     {
