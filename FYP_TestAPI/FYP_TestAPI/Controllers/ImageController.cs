@@ -37,7 +37,7 @@ namespace FYP_TestAPI.Controllers
         public async Task<IActionResult> RecieveImage([FromForm]Image recieved)
         {
             var actual_Picture = recieved.photo;
-            if (_context.GetDevice(recieved._DevID) != null)
+            if (_context.GetDevice(recieved._DevID, ConnectedDevicesContext.DatabaseGetMode.UUID) != null)
             {
                 if (actual_Picture.Length > 0)
                 {
