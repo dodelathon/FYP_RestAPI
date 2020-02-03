@@ -69,7 +69,7 @@ namespace FYP_TestAPI.Controllers
             }
             catch(Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message + "\n" + e.Source);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message + "\n" + e.StackTrace);
             }
         }
 
