@@ -57,14 +57,14 @@ namespace FYP_TestAPI.Controllers
             try
             {
                 Guid UUID = Guid.NewGuid();
-                if (_context.AddDevice(DevName, UUID.ToString()) == true)
-                {
+                //if (_context.AddDevice(DevName, UUID.ToString()) == true)
+                //{
                     return Ok(UUID.ToString());
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status409Conflict, "Device already exists");
-                }
+                //}
+                //else
+                //{
+                  //  return StatusCode(StatusCodes.Status409Conflict, "Device already exists");
+                //}
                 
             }
             catch(Exception e)
