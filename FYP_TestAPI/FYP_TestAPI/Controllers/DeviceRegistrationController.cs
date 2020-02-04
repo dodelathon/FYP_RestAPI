@@ -63,7 +63,7 @@ namespace FYP_TestAPI.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status409Conflict, (_context.GetDevice(UUID.ToString(), ConnectedDevicesContext.DatabaseGetMode.UUID)).UUID);
+                    return StatusCode(StatusCodes.Status409Conflict, (_context.GetDevice(DevName, ConnectedDevicesContext.DatabaseGetMode.Name)).UUID);
                 }
                 
             }

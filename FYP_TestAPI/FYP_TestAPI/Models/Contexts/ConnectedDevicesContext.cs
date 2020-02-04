@@ -108,6 +108,7 @@ namespace FYP_TestAPI.Models.Contexts
                 catch
                 {
                     retval = null;
+                    Console.WriteLine("Error when searching");
                 }
             }
             return retval;
@@ -116,13 +117,14 @@ namespace FYP_TestAPI.Models.Contexts
         public bool AddDevice(string DevName, string DevUUID)
         {
             bool complete = false;
-            FeederDevice temp = GetDevice(DevUUID, DatabaseGetMode.UUID);
+            FeederDevice temp = GetDevice(DevUUID, DatabaseGetMode.Name);
             if (temp == null)
             {
                 using (MySqlConnection conn = GetConnection())
                 {
                     try
                     {
+                        Console.WriteLine("Beginning Insertion");
                         conn.Open();
                         MySqlCommand cmd = new MySqlCommand("INSERT INTO Connected_Devices VALUES(default, @_Name, @_UUID);", conn);
                         cmd.Parameters.AddWithValue("_UUID", DevUUID);
