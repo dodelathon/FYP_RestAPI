@@ -86,7 +86,7 @@ namespace FYP_TestAPI.Models.Contexts
                     }
                     else if(mode == DatabaseGetMode.Name)
                     {
-                        cmd = new MySqlCommand("select * from Connected_Devices where UUID = @Name;", conn);
+                        cmd = new MySqlCommand("select * from Connected_Devices where Device_Name = @Name;", conn);
                         cmd.Parameters.AddWithValue("Name", Device_Val);
                     }
                     cmd.Prepare();
