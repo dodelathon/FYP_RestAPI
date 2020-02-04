@@ -117,7 +117,7 @@ namespace FYP_TestAPI.Models.Contexts
         {
             bool complete = false;
             FeederDevice temp = GetDevice(DevUUID, DatabaseGetMode.UUID);
-            if (temp != null)
+            if (temp == null)
             {
                 using (MySqlConnection conn = GetConnection())
                 {
