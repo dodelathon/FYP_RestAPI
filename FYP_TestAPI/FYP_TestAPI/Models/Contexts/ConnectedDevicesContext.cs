@@ -95,6 +95,7 @@ namespace FYP_TestAPI.Models.Contexts
                     {
                         while (reader.Read())
                         {
+                            Console.WriteLine("result found");
                             retval = new FeederDevice
                             {
                                 DeviceID = Convert.ToInt32(reader["DeviceID"]),
