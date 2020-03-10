@@ -55,7 +55,7 @@ namespace FYP_TestAPI.Controllers
                 {
                     Directory.CreateDirectory(filePath + stats._Device + "/");
                 }
-                System.IO.File.SetAttributes(filePath + actual_Stats.FileName, FileAttributes.Normal);
+                System.IO.File.SetAttributes(filePath + stats._Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
                 using (var fileStream = new FileStream(filePath + stats._Device + "/" + actual_Stats.FileName, FileMode.Create))
                 {
                     await actual_Stats.CopyToAsync(fileStream);
