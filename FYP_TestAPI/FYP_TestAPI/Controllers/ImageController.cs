@@ -37,7 +37,7 @@ namespace FYP_TestAPI.Controllers
             var actual_Picture = recieved.photo;
             //if (actual_Picture != null)
             //{
-            if (actual_Picture.Length > 0 && _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
+            if ((actual_Picture != null || actual_Picture.Length > 0) && _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
             {
                 if (!Directory.Exists(filePath + recieved._Device + "/"))
                 {
