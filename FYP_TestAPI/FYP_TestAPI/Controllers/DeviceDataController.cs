@@ -71,7 +71,7 @@ namespace FYP_TestAPI.Controllers
             }
             catch(NullReferenceException)
             {
-                return StatusCode(StatusCodes.Status204NoContent, "No File Detected! ");
+                return StatusCode(StatusCodes.Status406NotAcceptable, "No File Detected! ");
             }
         }
 
