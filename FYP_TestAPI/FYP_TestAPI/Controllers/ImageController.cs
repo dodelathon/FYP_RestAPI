@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using FYP_TestAPI.Models.Containers;
+using FYP_TestAPI.Models.Contexts;
 using Microsoft.AspNetCore.Http;
 
 namespace FYP_TestAPI.Controllers
@@ -17,11 +18,13 @@ namespace FYP_TestAPI.Controllers
 
         private IHostingEnvironment hostingEnvironment;
         private string filePath;
+        private ConnectedDevicesContext _context;
 
-        public ImageController(IHostingEnvironment env)
+        public ImageController(ConnectedDevicesContext conn, IHostingEnvironment env)
         {
             hostingEnvironment = env;
             filePath = "wwwroot/images/";
+            _context = conn;
             //Console.WriteLine(env.EnvironmentName);
         }
 
@@ -34,7 +37,7 @@ namespace FYP_TestAPI.Controllers
             var actual_Picture = recieved.photo;
             //if (actual_Picture != null)
             //{
-            if (actual_Picture.Length > 0)
+            if (actual_Picture.Length > 0 && _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
             {
                 if (!Directory.Exists(filePath + recieved._Device + "/"))
                 {

@@ -143,5 +143,18 @@ namespace FYP_TestAPI.Models.Contexts
             }
             return complete;
         }
+
+        public bool Exists(string Device_Val, DatabaseGetMode mode)
+        {
+            FeederDevice res = GetDevice(Device_Val, mode);
+            if (res == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

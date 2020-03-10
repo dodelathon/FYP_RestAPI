@@ -49,7 +49,7 @@ namespace FYP_TestAPI.Controllers
         {
 
             var actual_Stats = stats.StatsFile;
-            if (actual_Stats.Length > 0)
+            if (actual_Stats.Length > 0 && _context.Exists(stats._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
             {
                 if (!Directory.Exists(filePath + stats._Device + "/"))
                 {
@@ -75,7 +75,7 @@ namespace FYP_TestAPI.Controllers
         {
             if (!(Directory.Exists(filePath + "/" + Device)))
             {
-                return NotFound("Device is not Registered or is not sending Statistics!");
+                return NotFound("Device is not sending Statistics!");
             }
             else
             {
