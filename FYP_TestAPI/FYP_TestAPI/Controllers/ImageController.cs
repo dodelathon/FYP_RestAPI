@@ -43,9 +43,9 @@ namespace FYP_TestAPI.Controllers
                 {
                     Directory.CreateDirectory(filePath + recieved._Device + "/");
                 }
-                System.IO.File.SetAttributes(filePath + recieved._Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
                 using (var fileStream = new FileStream(filePath + recieved._Device + "/" + actual_Picture.FileName, FileMode.Create))
                 {
+                    System.IO.File.SetAttributes(filePath + recieved._Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
                     await actual_Picture.CopyToAsync(fileStream);
                 }
                 return Ok(new { status = true, message = "Photo Posted Successfully" });
@@ -62,9 +62,9 @@ namespace FYP_TestAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetImage(string Device)
         {
-            if (!(Directory.Exists(filePath + "/" + Device)))
+            if (!(Directory.Exists(filePath + "/" + Device + "/")))
             { 
-                return NotFound("Device is not Registered or is not sending Images!");
+                return NotFound("Device is not Registered!");
             }
             else
             {

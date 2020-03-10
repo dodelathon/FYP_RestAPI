@@ -49,7 +49,7 @@ namespace FYP_TestAPI.Controllers
         {
 
             var actual_Stats = stats.StatsFile;
-            if (actual_Stats.Length > 0 && _context.Exists(stats._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
+            if ((actual_Stats.Length  > 0 || actual_Stats != null) && _context.Exists(stats._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
             {
                 if (!Directory.Exists(filePath + stats._Device + "/"))
                 {
@@ -75,12 +75,12 @@ namespace FYP_TestAPI.Controllers
         {
             if (!(Directory.Exists(filePath + Device + "/")))
             {
-                return NotFound("Device is not sending Statistics!   " + Directory.Exists(filePath + Device) + "  " + filePath + Device);
+                return NotFound("Device is not sending Statistics!");
             }
             else
             {
                 Console.WriteLine(Device);
-                string[] stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json").ToArray();
+                var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
                 return Ok(stats);
             }
         }
