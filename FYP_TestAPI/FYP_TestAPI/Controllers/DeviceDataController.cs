@@ -48,23 +48,30 @@ namespace FYP_TestAPI.Controllers
         public async Task<IActionResult> UpdateStats([FromForm]DeviceStatsContainer stats)
         {
 
-            var actual_Stats = stats.StatsFile;
-            if ((actual_Stats != null || actual_Stats.Length  > 0) && _context.Exists(stats._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
+            try
             {
-                if (!Directory.Exists(filePath + stats._Device + "/"))
+                var actual_Stats = stats.StatsFile;
+                if (actual_Stats.Length > 0 && _context.Exists(stats._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
                 {
-                    Directory.CreateDirectory(filePath + stats._Device + "/");
+                    if (!Directory.Exists(filePath + stats._Device + "/"))
+                    {
+                        Directory.CreateDirectory(filePath + stats._Device + "/");
+                    }
+                    using (var fileStream = new FileStream(filePath + stats._Device + "/" + actual_Stats.FileName, FileMode.Create))
+                    {
+                        System.IO.File.SetAttributes(filePath + stats._Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
+                        await actual_Stats.CopyToAsync(fileStream);
+                    }
+                    return Ok(new { status = true, message = "File Posted Successfully" });
                 }
-                using (var fileStream = new FileStream(filePath + stats._Device + "/" + actual_Stats.FileName, FileMode.Create))
+                else
                 {
-                    System.IO.File.SetAttributes(filePath + stats._Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
-                    await actual_Stats.CopyToAsync(fileStream);
+                    return StatusCode(StatusCodes.Status406NotAcceptable);
                 }
-                return Ok(new { status = true, message = "File Posted Successfully" });
             }
-            else
+            catch(NullReferenceException)
             {
-                return StatusCode(StatusCodes.Status406NotAcceptable);
+                return StatusCode(StatusCodes.Status204NoContent, "No File Detected! ");
             }
         }
 

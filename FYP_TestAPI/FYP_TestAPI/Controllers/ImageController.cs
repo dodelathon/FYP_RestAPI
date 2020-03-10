@@ -35,26 +35,31 @@ namespace FYP_TestAPI.Controllers
         public async Task<IActionResult> RecieveImage([FromForm]Image recieved)
         {
             var actual_Picture = recieved.photo;
-            //if (actual_Picture != null)
-            //{
-            if ((actual_Picture != null || actual_Picture.Length > 0) && _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
+            try
             {
-                if (!Directory.Exists(filePath + recieved._Device + "/"))
+                if (actual_Picture.Length > 0 && _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
                 {
-                    Directory.CreateDirectory(filePath + recieved._Device + "/");
+                    if (!Directory.Exists(filePath + recieved._Device + "/"))
+                    {
+                        Directory.CreateDirectory(filePath + recieved._Device + "/");
+                    }
+                    using (var fileStream = new FileStream(filePath + recieved._Device + "/" + actual_Picture.FileName, FileMode.Create))
+                    {
+                        System.IO.File.SetAttributes(filePath + recieved._Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
+                        await actual_Picture.CopyToAsync(fileStream);
+                    }
+                    return Ok(new { status = true, message = "Photo Posted Successfully" });
                 }
-                using (var fileStream = new FileStream(filePath + recieved._Device + "/" + actual_Picture.FileName, FileMode.Create))
+                else
                 {
-                    System.IO.File.SetAttributes(filePath + recieved._Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
-                    await actual_Picture.CopyToAsync(fileStream);
+                    return StatusCode(StatusCodes.Status406NotAcceptable);
                 }
-                return Ok(new { status = true, message = "Photo Posted Successfully" });
             }
-            else
+            catch (NullReferenceException)
             {
-                return StatusCode(StatusCodes.Status406NotAcceptable) ;
+                return StatusCode(StatusCodes.Status204NoContent, "No Image Detected! ");
             }
-                      
+
         }
 
         [HttpGet("GetImage")]
