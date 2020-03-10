@@ -71,7 +71,7 @@ namespace FYP_TestAPI.Controllers
         [HttpGet("GetStats")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetImage(string Device)
+        public IActionResult GetImage([FromHeader]string Device)
         {
             if (!(Directory.Exists(filePath + "/" + Device)))
             {
