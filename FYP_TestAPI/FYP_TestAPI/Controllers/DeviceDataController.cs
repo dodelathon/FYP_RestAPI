@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using FYP_TestAPI.Models.Contexts;
 using FYP_TestAPI.Models.Containers;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,10 +17,14 @@ namespace FYP_TestAPI.Controllers
     [ApiController]
     public class DeviceDataController : ControllerBase
     {
+        private IHostingEnvironment hostingEnvironment;
+        private string filePath;
         private readonly ConnectedDevicesContext _context;
-        public DeviceDataController(ConnectedDevicesContext context)
+        public DeviceDataController(ConnectedDevicesContext context, IHostingEnvironment env)
         {
             _context = context;
+            hostingEnvironment = env;
+            filePath = "wwwroot/Stats/";
         }
 
         [HttpGet("GetAllDevices")]
@@ -36,18 +42,47 @@ namespace FYP_TestAPI.Controllers
             }
         }
 
-        [HttpPut("UpdateDeviceStats")]
-        public ActionResult UpdateStats()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+        [HttpPost("UpdateDeviceStats")]
+        public async Task<IActionResult> UpdateStats([FromForm]DeviceStatsContainer stats)
         {
-            try
+
+            var actual_Stats = stats.StatsFile;
+            if (actual_Stats.Length > 0)
             {
-                return Ok();
+                if (!Directory.Exists(filePath + stats._Device + "/"))
+                {
+                    Directory.CreateDirectory(filePath + stats._Device + "/");
+                }
+                System.IO.File.SetAttributes(filePath + stats._Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
+                using (var fileStream = new FileStream(filePath + stats._Device + "/" + actual_Stats.FileName, FileMode.Create))
+                {
+                    await actual_Stats.CopyToAsync(fileStream);
+                }
+                return Ok(new { status = true, message = "File Posted Successfully" });
             }
-            catch
+            else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status406NotAcceptable);
             }
         }
 
+        [HttpGet("GetStats")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetImage(string Device)
+        {
+            if (!(Directory.Exists(filePath + "/" + Device)))
+            {
+                return NotFound("Device is not Registered or is not sending Statistics!");
+            }
+            else
+            {
+                Console.WriteLine(Device);
+                string[] stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json").ToArray();
+                return Ok(stats);
+            }
+        }
     }
 }

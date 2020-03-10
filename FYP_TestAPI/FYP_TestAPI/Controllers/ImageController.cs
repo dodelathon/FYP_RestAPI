@@ -36,13 +36,12 @@ namespace FYP_TestAPI.Controllers
             //{
             if (actual_Picture.Length > 0)
             {
-                if (!Directory.Exists(filePath))
+                if (!Directory.Exists(filePath + recieved._Device + "/"))
                 {
-                    Directory.CreateDirectory(filePath);
+                    Directory.CreateDirectory(filePath + recieved._Device + "/");
                 }
-                filePath += actual_Picture.FileName;
-                System.IO.File.SetAttributes(filePath, FileAttributes.Normal);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                System.IO.File.SetAttributes(filePath + recieved._Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
+                using (var fileStream = new FileStream(filePath + recieved._Device + "/" + actual_Picture.FileName, FileMode.Create))
                 {
                     await actual_Picture.CopyToAsync(fileStream);
                 }
