@@ -75,6 +75,7 @@ namespace FYP_TestAPI.Controllers
         {
             if (!(Directory.Exists(filePath + "/" + Device)))
             {
+                Console.WriteLine(filePath + "/" + Device);
                 return NotFound("Device is not sending Statistics!");
             }
             else
