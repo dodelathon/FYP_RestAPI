@@ -80,7 +80,7 @@ namespace FYP_TestAPI.Controllers
         [HttpGet("GetStats")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetImage([FromHeader]string Device)
+        public IActionResult GetStats([FromHeader]string Device)
         {
             if (!(Directory.Exists(filePath + Device + "/")))
             {
@@ -95,7 +95,8 @@ namespace FYP_TestAPI.Controllers
                 {
                     retVal += x + "\n";
                 }
-                return Ok(retVal);
+                //return Ok(retVal);
+                return Ok(stats);
             }
         }
     }
