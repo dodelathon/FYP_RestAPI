@@ -96,7 +96,7 @@ namespace FYP_TestAPI.Controllers
                    retVal += x + "\n";
                 }
                 Response.Headers["Content-Type"] = "application/json; charset=utf-8";
-                return Ok(new StringContent(retVal, Encoding.UTF8, "application/json"));
+                return Ok(retVal);
             }
         }
     }
