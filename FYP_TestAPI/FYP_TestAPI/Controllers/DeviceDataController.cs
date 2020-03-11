@@ -8,6 +8,8 @@ using FYP_TestAPI.Models.Contexts;
 using FYP_TestAPI.Models.Containers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.Net.Http;
+using System.Text;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -93,7 +95,7 @@ namespace FYP_TestAPI.Controllers
                 {
                     retVal += x + "\n";
                 }
-                return Ok(retVal);
+                return Ok(new StringContent(retVal, Encoding.UTF8, "application/json"));
             }
         }
     }
