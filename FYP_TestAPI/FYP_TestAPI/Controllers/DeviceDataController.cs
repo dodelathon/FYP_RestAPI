@@ -88,7 +88,12 @@ namespace FYP_TestAPI.Controllers
             {
                 Console.WriteLine(Device);
                 var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
-                return Ok(stats);
+                string retVal = "";
+                foreach(string x in stats)
+                {
+                    retVal += x + "\n";
+                }
+                return Ok(retVal);
             }
         }
     }
