@@ -89,13 +89,13 @@ namespace FYP_TestAPI.Controllers
             else
             {
                 Console.WriteLine(Device);
-                var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json").ToList();
+                var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
                 string retVal = "";
                 foreach(string x in stats)
                 {
                     retVal += x + "\n";
                 }
-                return Ok(new {results = stats});
+                return Ok(retVal);
             }
         }
     }
