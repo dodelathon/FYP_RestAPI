@@ -89,14 +89,16 @@ namespace FYP_TestAPI.Controllers
             else
             {
                 Console.WriteLine(Device);
-                var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
-                string retVal = "";
-                foreach(string x in stats)
-                {
-                    retVal += x + "\n";
-                }
-                return Ok(new StringContent(retVal, Encoding.UTF8, "application/json"));
-            }
+                //var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
+                byte[] stats = System.IO.File.ReadAllBytes(filePath + "/" + Device + "/" + "Stats.json");
+                return Ok(File(stats, "application/json"));
+                //string retVal = "";
+                //foreach(string x in stats)
+                //{
+                   // retVal += x + "\n";
+               // }
+                //return Ok(new StringContent(retVal, Encoding.UTF8, "application/json"));
+            }//
         }
     }
 }
