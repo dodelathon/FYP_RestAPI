@@ -89,15 +89,13 @@ namespace FYP_TestAPI.Controllers
             else
             {
                 Console.WriteLine(Device);
-                var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
+                var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json").ToList();
                 string retVal = "";
                 foreach(string x in stats)
                 {
-                    retVal += x; ;// + "\n";
+                    retVal += x + "\n";
                 }
-                //Response.Headers["Content-Type"] = "application/json; charset=utf-8";
-                //return Ok(stats);
-                return Ok(new StringContent(retVal, Encoding.UTF8, "application/json"));
+                return Ok(new {results = stats});
             }
         }
     }
