@@ -93,7 +93,7 @@ namespace FYP_TestAPI.Controllers
                 string retVal = "";
                 foreach(string x in stats)
                 {
-                   retVal += x + "\n";
+                    retVal += x; ;// + "\n";
                 }
                 //Response.Headers["Content-Type"] = "application/json; charset=utf-8";
                 //return Ok(stats);
