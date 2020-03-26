@@ -2,7 +2,13 @@
 
 $(document).ready(function () {
 	LoadDevices();
-	//getStats();
+	getStats();
+
+});
+
+$("#Submit_Btn_Mainpage").onClick(function ()
+{
+	getStats()
 });
 
 function getStats() {
@@ -21,8 +27,8 @@ function getStats() {
 			$(tBody).empty();
 			$.each(data, function (key, item) {
 				const tr = $("<tr></tr>")
-					.append($("<td></td>").text(key.name))
-					.append($("<td></td>").text(item.name))
+					.append($("<td></td>").text(key))
+					.append($("<td></td>").text(item))
 
 				tr.appendTo(tBody);
 			});
