@@ -43,7 +43,7 @@ function LoadDevices() {
 			$(tBody).empty();
 			$.each(data, function (key, item)
 			{
-				tBody.append($("<option>"+ item.Description +"</option>"))
+				tBody.append($("<option>"+ item +"</option>"))
 			});
 
 			//todos= data;
