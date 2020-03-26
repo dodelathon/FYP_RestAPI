@@ -1,69 +1,57 @@
-﻿/*const uri = "api/todo";
-let todos = null;
-function getCount(data) {
-	const el = $("#counter");
-	let name = "to-do";
-	if (data) {
-		if (data > 1) {
-			name = "to-dos";
-		}
-		el.text(data + " " + name);
-	} else {
-		el.text("No " + name);
-	}
-}
+﻿const uri = "https://donal-doherty.com/api/DeviceData";
 
 $(document).ready(function () {
-	getData();
+	LoadDevices();
+	//getStats();
 });
 
-function getData() {
+function getStats() {
 	$.ajax({
 		type: "GET",
-		url: uri,
+		url: uri + "/GetStats",
+		headers:
+		{
+			'Device': $("#Device_Selector").val()
+		},
 		cache: false,
-		success: function (data) {
-			const tBody = $("#todos");
+		success: function (data)
+		{
+			const tBody = $("#Stats_Holder");
 
 			$(tBody).empty();
-
-			getCount(data.length);
-
 			$.each(data, function (key, item) {
 				const tr = $("<tr></tr>")
-					.append(
-						$("<td></td>").append(
-							$("<input/>", {
-								type: "checkbox",
-								disabled: true,
-								checked: item.isComplete
-							})
-						)
-					)
+					.append($("<td></td>").text(key.name))
 					.append($("<td></td>").text(item.name))
-					.append(
-						$("<td></td>").append(
-							$("<button>Edit</button>").on("click", function () {
-								editItem(item.id);
-							})
-						)
-					)
-					.append(
-						$("<td></td>").append(
-							$("<button>Delete</button>").on("click", function () {
-								deleteItem(item.id);
-							})
-						)
-					);
 
 				tr.appendTo(tBody);
 			});
 
-			todos = data;
+			//todos= data;
 		}
 	});
 }
 
+function LoadDevices() {
+	$.ajax({
+		type: "GET",
+		url: uri + "/GetAllDevices",
+		success: function (data) {
+			const tBody = $("#Device_Selector");
+
+			//ta = $.parseJSON(data);
+			$(tBody).empty();
+			$.each(data, function (key, item)
+			{
+				tBody.append($("<option>"+ item.Description +"</option>"))
+			});
+
+			//todos= data;
+		}
+	});
+}
+
+/*
 function addItem() {
 	const item = {
 		name: $("#add-name").val(),
@@ -96,16 +84,6 @@ function deleteItem(id) {
 	});
 }
 
-function editItem(id) {
-	$.each(todos, function (key, item) {
-		if (item.id === id) {
-			$("#edit-name").val(item.name);
-			$("#edit-id").val(item.id);
-			$("#edit-isComplete")[0].checked = item.isComplete;
-		}
-	});
-	$("#spoiler").css({ display: "block" });
-}
 
 $(".my-form").on("submit", function () {
 	const item = {
@@ -127,15 +105,12 @@ $(".my-form").on("submit", function () {
 
 	closeInput();
 	return false;
-});
+});*/
 
-function closeInput() {
-	$("#spoiler").css({ display: "none" });
-}*/
 
 function refreshIt() 
 {
-	var source = "https://donal-doherty.com/api/image/GetImage?Device=bob#",
+	var source = "https://donal-doherty.com/api/image/GetImage?Device=" + $("#Device_Selector").val();
 	timestamp = (new Date()).getTime();
 	document.getElementById("Stream").src = source + timestamp;
 	//setTimeout(refreshIt, 10000);
