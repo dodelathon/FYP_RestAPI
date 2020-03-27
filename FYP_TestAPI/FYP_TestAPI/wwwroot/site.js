@@ -31,9 +31,9 @@ function getStats() {
 				x += 1;
 				const tr = $("<tr></tr>")
 					.append($("<td></td>").text(key))
-					.append($("<td></td>").text(item);
+					.append($("<td></td>").text(item))
 
-				tr.appendTo(tBody);
+				tBody.append(tr);
 			});
 
 			//todos= data;
