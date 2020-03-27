@@ -29,9 +29,18 @@ function getStats() {
 			$.each(data, function (key, item) {
 				console.log(x);
 				x += 1;
-				const tr = $("<tr></tr>")
-					.append($("<td></td>").text(key))
-					.append($("<td></td>").text(item))
+				const tr = $("<tr>" + "<td>" + key + "</td>" + "</tr>");
+				$.each(item, function (Secondkey, Seconditem)
+				{
+					if (Secondkey != "history")
+					{
+						tr.append($("<td></td>").text(Secondkey))
+						$.each(Seconditem, function (Thirdkey, Thirditem) {
+							tr.append($("<td></td>").text(Thirdkey))
+								.append($("<td></td>").text(Thirditem))
+						});
+					}
+				});
 
 				tBody.append(tr);
 			});
