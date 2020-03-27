@@ -116,8 +116,9 @@ $(".my-form").on("submit", function () {
 
 function refreshIt() 
 {
+	console.log("Here " + $("#Device_Selector").val());
 	var source = "https://donal-doherty.com/api/image/GetImage?Device=" + $("#Device_Selector").val();
 	timestamp = (new Date()).getTime();
-	document.getElementById("Stream").src = source + timestamp;
+	document.getElementById("Stream").src = source// + timestamp;
 	//setTimeout(refreshIt, 10000);
 }
