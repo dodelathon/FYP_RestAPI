@@ -24,12 +24,14 @@ function getStats() {
 			const tBody = $("#Stats_Holder");
 
 			$(tBody).empty();
-			console.log(data);
 			data = JSON.parse(data);
+			var x = 0;
 			$.each(data, function (key, item) {
+				console.log(x);
+				x += 1;
 				const tr = $("<tr></tr>")
 					.append($("<td></td>").text(key))
-					.append($("<td></td>").text(item))
+					.append($("<td></td>").text(item);
 
 				tr.appendTo(tBody);
 			});
@@ -50,7 +52,6 @@ function LoadDevices() {
 			$(tBody).empty();
 			$.each(data, function (key, item)
 			{
-				console.log(item.uuid + " " + item.device_Name);
 				tBody.append($("<option value=" + item.uuid + ">" + item.device_Name +"</option>"))
 			});
 
