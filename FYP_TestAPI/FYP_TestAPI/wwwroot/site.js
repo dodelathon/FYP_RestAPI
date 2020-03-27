@@ -44,10 +44,11 @@ function LoadDevices() {
 		success: function (data) {
 			const tBody = $("#Device_Selector");
 
-			//ta = $.parseJSON(data);
+			data = $.parseJSON(data);
 			$(tBody).empty();
 			$.each(data, function (key, item)
 			{
+				console.log(item.uuid + " " + item.device_Name);
 				tBody.append($("<option value=" + item.uuid + ">" + item.device_Name +"</option>"))
 			});
 
