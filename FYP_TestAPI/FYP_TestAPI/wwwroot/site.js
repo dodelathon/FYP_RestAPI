@@ -24,6 +24,7 @@ function getStats() {
 			const tBody = $("#Stats_Holder");
 
 			$(tBody).empty();
+			data = $.parseJSON(data);
 			$.each(data, function (key, item) {
 				const tr = $("<tr></tr>")
 					.append($("<td></td>").text(key))
@@ -44,7 +45,7 @@ function LoadDevices() {
 		success: function (data) {
 			const tBody = $("#Device_Selector");
 
-			data = $.parseJSON(data);
+			
 			$(tBody).empty();
 			$.each(data, function (key, item)
 			{
