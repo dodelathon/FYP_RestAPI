@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 });
 
-$("#Submit_Btn_Mainpage").onClick(function ()
+$("#Submit_Btn_Mainpage").click(function ()
 {
 	getStats()
 });
