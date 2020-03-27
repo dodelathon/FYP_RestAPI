@@ -2,14 +2,13 @@
 
 $(document).ready(function () {
 	LoadDevices();
-	getStats();
-
+	//getStats();
+	$("#Submit_Btn_Mainpage").click(function () {
+		getStats()
+	});
 });
 
-$("#Submit_Btn_Mainpage").click(function ()
-{
-	getStats()
-});
+
 
 function getStats() {
 	$.ajax({
