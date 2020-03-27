@@ -32,14 +32,23 @@ function getStats() {
 				const tr = $("<tr>" + "<td>" + key + "</td>" + "</tr>");
 				$.each(item, function (Secondkey, Seconditem)
 				{
-					if (Secondkey != "history")
+					if (typeof Seconditem != 'string')
+					{
+
+						if (Secondkey != "history") {
+							tr.append($("<td></td>").text(Secondkey))
+							$.each(Seconditem, function (Thirdkey, Thirditem) {
+								tr.append($("<td></td>").text(Thirdkey))
+									.append($("<td></td>").text(Thirditem))
+							});
+						}
+					}
+					else
 					{
 						tr.append($("<td></td>").text(Secondkey))
-						$.each(Seconditem, function (Thirdkey, Thirditem) {
-							tr.append($("<td></td>").text(Thirdkey))
-								.append($("<td></td>").text(Thirditem))
-						});
+							.append($("<td></td>").text(Seconditem))
 					}
+
 				});
 
 				tBody.append(tr);
