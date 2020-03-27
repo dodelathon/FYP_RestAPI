@@ -24,7 +24,8 @@ function getStats() {
 			const tBody = $("#Stats_Holder");
 
 			$(tBody).empty();
-			data = $.parseJSON(data);
+			console.log(data);
+			data = $JSON.parse(data);
 			$.each(data, function (key, item) {
 				const tr = $("<tr></tr>")
 					.append($("<td></td>").text(key))
