@@ -95,8 +95,8 @@ namespace FYP_TestAPI.Controllers
                 {
                     retVal += x + "\n";
                 }
-                //return Ok(retVal);
-                return Ok(stats);
+                return Ok(retVal);
+                //return Ok(stats);
             }
         }
     }
