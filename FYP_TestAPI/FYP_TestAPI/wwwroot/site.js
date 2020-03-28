@@ -32,7 +32,7 @@ function getStats() {
 				const tr = $("<tr>" + "<td>" + key + "</td>" + "</tr>");
 				$.each(item, function (Secondkey, Seconditem)
 				{
-					if (typeof Seconditem != 'string')
+					if (typeof Seconditem == 'object')
 					{
 						//console.log(typeof Seconditem);
 						console.log(Secondkey);
