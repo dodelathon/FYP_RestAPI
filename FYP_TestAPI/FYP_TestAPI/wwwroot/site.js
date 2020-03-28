@@ -54,8 +54,8 @@ function getStats() {
 				});
 				tr.append($("</tr>"));
 
-				tBody.append(tr);
 			});
+			tBody.append(tr);
 
 			//todos= data;
 		}
