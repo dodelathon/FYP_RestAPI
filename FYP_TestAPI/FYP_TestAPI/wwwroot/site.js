@@ -34,7 +34,7 @@ function getStats() {
 				{
 					if (typeof Seconditem != 'string')
 					{
-						console.log(typeof Seconditem);
+						//console.log(typeof Seconditem);
 						console.log(Secondkey);
 						if (Secondkey != "history") {
 							tr.append($("<td></td>").text(Secondkey))
@@ -48,7 +48,7 @@ function getStats() {
 					{
 						console.log("Not a string");
 						tr.append($("<td></td>").text(Secondkey))
-							.append($("<td></td>").text(Seconditem))
+							.append($("<td>" + Seconditem + "</td>"))
 					}
 
 				});
