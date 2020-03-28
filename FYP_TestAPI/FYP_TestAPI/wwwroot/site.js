@@ -35,7 +35,7 @@ function getStats() {
 					if (typeof Seconditem != 'string')
 					{
 						console.log(typeof Seconditem);
-						console.log(SecondKey);
+						console.log(Secondkey);
 						if (Secondkey != "history") {
 							tr.append($("<td></td>").text(Secondkey))
 							$.each(Seconditem, function (Thirdkey, Thirditem) {
