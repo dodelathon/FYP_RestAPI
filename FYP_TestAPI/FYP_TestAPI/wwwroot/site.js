@@ -45,6 +45,7 @@ function getStats() {
 					}
 					else
 					{
+						console.log("Not a string");
 						tr.append($("<td></td>").text(Secondkey))
 							.append($("<td></td>").text(Seconditem))
 					}
