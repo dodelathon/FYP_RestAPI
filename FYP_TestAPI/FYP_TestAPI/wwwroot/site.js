@@ -29,13 +29,13 @@ function getStats() {
 			$.each(data, function (key, item) {
 				console.log(x);
 				x += 1;
-				const tr = $("<tr>" + "<td>" + key + "</td>" + "</tr>");
+				const tr = $("<tr>").append($("<td></td>").text(key));
 				$.each(item, function (Secondkey, Seconditem)
 				{
 					if (typeof Seconditem == 'object')
 					{
 						//console.log(typeof Seconditem);
-						console.log(Secondkey);
+						//console.log(Secondkey);
 						if (Secondkey != "history") {
 							tr.append($("<td></td>").text(Secondkey))
 							$.each(Seconditem, function (Thirdkey, Thirditem) {
@@ -46,12 +46,13 @@ function getStats() {
 					}
 					else
 					{
-						console.log("Not a string");
+						//console.log("Not a string");
 						tr.append($("<td></td>").text(Secondkey))
 							.append($("<td>" + Seconditem + "</td>"))
 					}
 
 				});
+				tr.append($("</tr>"));
 
 				tBody.append(tr);
 			});
