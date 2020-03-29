@@ -29,7 +29,7 @@ function getStats() {
 			$.each(data, function (key, item) {
 				console.log(x);
 				x += 1;
-				const tr = tbody.insertRow().insertCell(0).append(key));
+				const tr = tbody.insertRow().insertCell(0).append(key);
 				$.each(item, function (Secondkey, Seconditem)
 				{
 					if (typeof Seconditem == 'object')
