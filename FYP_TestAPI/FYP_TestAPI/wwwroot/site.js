@@ -35,9 +35,9 @@ function TestTable(data) {
 		const tr = $("<tr></tr>")
 			.append(
 				$("<td></td>").text(key)
-		).append(
-			$("<tr></tr>")
-		)
+			).append(
+				$("<tr></tr>")
+			);
 		tr.appendTo(tBody);
 	});
 }
