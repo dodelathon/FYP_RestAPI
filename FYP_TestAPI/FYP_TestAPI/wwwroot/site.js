@@ -59,11 +59,11 @@ function BuildTable(data) {
 				//console.log(typeof Seconditem);
 				//console.log(Secondkey);
 				if (Secondkey != "history") {
-					tr.append($("<td></td>").text(Secondkey))
+					tr.append($("<td></td>")).append($("<td></td>").text(Secondkey))
 					tBody.append(tr);
 					$.each(Seconditem, function (Thirdkey, Thirditem) {
 						tr = $("<tr></tr>")
-						tr.append($("<td></td>")).append($("<td></td>").text(Thirdkey))
+						tr.append($("<td></td>")).append($("<td></td>")).append($("<td></td>").text(Thirdkey))
 							.append($("<td></td>").text(Thirditem))
 						tBody.append(tr);
 					});
