@@ -63,7 +63,7 @@ function BuildTable(data) {
 					tBody.append(tr);
 					$.each(Seconditem, function (Thirdkey, Thirditem) {
 						tr = $("<tr></tr>")
-						tr.append($("<td></td>").text(Thirdkey))
+						tr.append($("<td></td>")).append($("<td></td>").text(Thirdkey))
 							.append($("<td></td>").text(Thirditem))
 						tBody.append(tr);
 					});
@@ -71,7 +71,7 @@ function BuildTable(data) {
 			}
 			else {
 				//console.log("Not a string");
-				tr.append($("<td></td>").text(Secondkey))
+				tr..append($("<td></td>")).append($("<td></td>").text(Secondkey))
 					.append($("<td></td>").text(Seconditem))
 				tBody.append(tr);
 			}
