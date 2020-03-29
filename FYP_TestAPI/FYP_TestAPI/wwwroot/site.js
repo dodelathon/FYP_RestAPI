@@ -29,7 +29,7 @@ function getStats() {
 			$.each(data, function (key, item) {
 				console.log(x);
 				x += 1;
-				const tr = $("<tr>").append($("<td></td>").text(key));
+				const tr = tbody.insertRow().insertCell(0).append(key));
 				$.each(item, function (Secondkey, Seconditem)
 				{
 					if (typeof Seconditem == 'object')
@@ -48,11 +48,11 @@ function getStats() {
 					{
 						//console.log("Not a string");
 						tr.append($("<td></td>").text(Secondkey))
-							.append($("<td>" + Seconditem + "</td>"))
+							.append($("<td></td>").text(Seconditem))
 					}
 
 				});
-				tr.append($("</tr>"));
+				tBody.append($("</tr>"));
 
 			});
 			tBody.append(tr);
