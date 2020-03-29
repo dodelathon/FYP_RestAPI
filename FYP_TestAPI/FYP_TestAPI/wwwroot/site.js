@@ -21,45 +21,58 @@ function getStats() {
 		cache: false,
 		success: function (data)
 		{
-			const tBody = $("#Stats_Holder");
-
-			$(tBody).empty();
-			data = JSON.parse(data);
-			var x = 0;
-			$.each(data, function (key, item) {
-				console.log(x);
-				x += 1;
-				const tr = tBody.insertRow().insertCell(0).append(key);
-				$.each(item, function (Secondkey, Seconditem)
-				{
-					if (typeof Seconditem == 'object')
-					{
-						//console.log(typeof Seconditem);
-						//console.log(Secondkey);
-						if (Secondkey != "history") {
-							tr.append($("<td></td>").text(Secondkey))
-							$.each(Seconditem, function (Thirdkey, Thirditem) {
-								tr.append($("<td></td>").text(Thirdkey))
-									.append($("<td></td>").text(Thirditem))
-							});
-						}
-					}
-					else
-					{
-						//console.log("Not a string");
-						tr.append($("<td></td>").text(Secondkey))
-							.append($("<td></td>").text(Seconditem))
-					}
-
-				});
-				//tBody.append($("</tr>"));
-
-			});
-			tBody.append(tr);
-
-			//todos= data;
+			//BuildTable(data);
+			TestTable(data);
 		}
 	});
+}
+
+function TestTable(data) {
+	const tBody = $("#Stats_Holder");
+	$(tBody).empty();
+	data = JSON.parse(data);
+	$.each(data, function (key, item) {
+		const tr = $("<tr></tr>")
+			.append(
+				$("<td></td>").text(key)
+			)
+		tr.appendTo(tBody);
+	});
+}
+
+function BuildTable(data) {
+	const tBody = $("#Stats_Holder");
+
+	$(tBody).empty();
+	data = JSON.parse(data);
+	var x = 0;
+	$.each(data, function (key, item) {
+		console.log(x);
+		x += 1;
+		const tr = $("<tr></tr>").append($("<td></td>").text(key));
+		$.each(item, function (Secondkey, Seconditem) {
+			if (typeof Seconditem == 'object') {
+				//console.log(typeof Seconditem);
+				//console.log(Secondkey);
+				if (Secondkey != "history") {
+					tr.append($("<td></td>").text(Secondkey))
+					$.each(Seconditem, function (Thirdkey, Thirditem) {
+						tr.append($("<td></td>").text(Thirdkey))
+							.append($("<td></td>").text(Thirditem))
+					});
+				}
+			}
+			else {
+				//console.log("Not a string");
+				tr.append($("<td></td>").text(Secondkey))
+					.append($("<td></td>").text(Seconditem))
+			}
+
+		});
+		//tBody.append($("</tr>"));
+
+	});
+	tBody.append(tr);
 }
 
 function LoadDevices() {
