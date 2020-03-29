@@ -52,15 +52,20 @@ function BuildTable(data) {
 		console.log(x);
 		x += 1;
 		const tr = $("<tr></tr>").append($("<td></td>").text(key));
+		tBody.append(tr)
 		$.each(item, function (Secondkey, Seconditem) {
+			tr = $("<tr></tr>");
 			if (typeof Seconditem == 'object') {
 				//console.log(typeof Seconditem);
 				//console.log(Secondkey);
 				if (Secondkey != "history") {
 					tr.append($("<td></td>").text(Secondkey))
+					tBody.append(tr);
 					$.each(Seconditem, function (Thirdkey, Thirditem) {
+						tr = $("<tr></tr>")
 						tr.append($("<td></td>").text(Thirdkey))
 							.append($("<td></td>").text(Thirditem))
+						tBody.append(tr);
 					});
 				}
 			}
@@ -68,11 +73,12 @@ function BuildTable(data) {
 				//console.log("Not a string");
 				tr.append($("<td></td>").text(Secondkey))
 					.append($("<td></td>").text(Seconditem))
+				tBody.append(tr);
 			}
 
 		});
 		//tBody.append($("</tr>"));
-		tBody.append(tr);
+		//tBody.append(tr);
 	});
 }
 
