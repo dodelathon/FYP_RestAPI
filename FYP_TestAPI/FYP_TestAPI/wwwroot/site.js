@@ -71,7 +71,7 @@ function BuildTable(data) {
 			}
 			else {
 				//console.log("Not a string");
-				tr..append($("<td></td>")).append($("<td></td>").text(Secondkey))
+				tr.append($("<td></td>")).append($("<td></td>").text(Secondkey))
 					.append($("<td></td>").text(Seconditem))
 				tBody.append(tr);
 			}
