@@ -51,7 +51,7 @@ function BuildTable(data) {
 	$.each(data, function (key, item) {
 		console.log(x);
 		x += 1;
-		const tr = $("<tr></tr>").append($("<td></td>").text(key)).append($("<td></td>"));
+		var tr = $("<tr></tr>").append($("<td></td>").text(key)).append($("<td></td>"));
 		tBody.append(tr)
 		$.each(item, function (Secondkey, Seconditem) {
 			tr = $("<tr></tr>");
