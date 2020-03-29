@@ -21,8 +21,8 @@ function getStats() {
 		cache: false,
 		success: function (data)
 		{
-			//BuildTable(data);
-			TestTable(data);
+			BuildTable(data);
+			//TestTable(data);
 		}
 	});
 }
@@ -72,9 +72,8 @@ function BuildTable(data) {
 
 		});
 		//tBody.append($("</tr>"));
-
+		tBody.append(tr);
 	});
-	tBody.append(tr);
 }
 
 function LoadDevices() {
