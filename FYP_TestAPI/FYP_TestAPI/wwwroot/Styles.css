@@ -42,7 +42,7 @@ td {
 }
 
 #Main_Body #Stats_Holder {
-	display: flex;
+	/*display: flex;*/
 	border: solid;
 	border-width: medium;
 }
