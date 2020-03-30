@@ -74,7 +74,7 @@ namespace FYP_TestAPI.Controllers
             else
             {
                 Console.WriteLine(Device);
-                byte[] image = System.IO.File.ReadAllBytes(filePath + "image.jpg");
+                byte[] image = System.IO.File.ReadAllBytes(filePath + "/" + Device + "/" + "image.jpg");
                 return Ok(File(image, "image/jpeg"));
             }
         }   
