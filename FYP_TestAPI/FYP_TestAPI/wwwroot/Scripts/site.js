@@ -19,7 +19,7 @@ $(document).ready(function () {
 		clearInterval(ImageInterval);
 		clearInterval(StatsInterval);
 		ImageInterval = setInterval(refreshImage, $(".User_Inputs #Interval_Selector").val());
-		StatsInterval = setInterval(BuildTable, $(".User_Inputs #Interval_Selector").val());
+		StatsInterval = setInterval(getStats, $(".User_Inputs #Interval_Selector").val());
 	});
 });
 
@@ -37,7 +37,6 @@ function getStats() {
 		success: function (data)
 		{
 			BuildTable(data);
-			//TestTable(data);
 		}
 	});
 }
