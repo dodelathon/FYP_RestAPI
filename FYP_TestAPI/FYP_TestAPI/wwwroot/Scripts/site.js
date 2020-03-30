@@ -5,7 +5,7 @@ var ImageInterval;
 
 $(document).ready(function () {
 
-	$("select#elem").prop(".User_Inputs #Interval_Selector", 4);
+	$("select#elem").prop(".User_Inputs #Interval_Selector", 5000);
 	LoadDevices();
 	//getStats();
 	ImageInterval = setInterval(refreshImage, 5000);
