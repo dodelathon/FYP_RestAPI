@@ -4,18 +4,12 @@
 
 table {
 	font-family: Arial, sans-serif;
-	border: 1px solid;
 	border-collapse: collapse;
 }
 
 th {
 	background-color: #0066CC;
 	color: white;
-}
-
-td {
-	border: 1px solid;
-	padding: 5px;
 }
 
 #Header_Top_Page {
@@ -56,8 +50,4 @@ td {
 	vertical-align: middle;
 	border: solid;
 	border-width: medium;
-}
-
-#Header_Input_Selection #Options #Page_Options_Table {
-	border-collapse: collapse;
 }
