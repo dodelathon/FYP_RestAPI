@@ -46,17 +46,12 @@ function BuildTable(data) {
 
 	$(tBody).empty();
 	data = JSON.parse(data);
-	var x = 0;
 	$.each(data, function (key, item) {
-		console.log(x);
-		x += 1;
 		var tr = $("<tr></tr>").append($("<td></td>").text(key)).append($("<td></td>"));
 		tBody.append(tr)
 		$.each(item, function (Secondkey, Seconditem) {
 			tr = $("<tr></tr>");
 			if (typeof Seconditem == 'object') {
-				//console.log(typeof Seconditem);
-				//console.log(Secondkey);
 				if (Secondkey != "history") {
 					tr.append($("<td></td>")).append($("<td></td>").text(Secondkey))
 					tBody.append(tr);
@@ -69,15 +64,11 @@ function BuildTable(data) {
 				}
 			}
 			else {
-				//console.log("Not a string");
 				tr.append($("<td></td>")).append($("<td></td>").text(Secondkey))
 					.append($("<td></td>").text(Seconditem))
 				tBody.append(tr);
 			}
-
 		});
-		//tBody.append($("</tr>"));
-		//tBody.append(tr);
 	});
 }
 
@@ -157,10 +148,18 @@ $(".my-form").on("submit", function () {
 
 function refreshImage() 
 {
-	var source = ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val();
-	timestamp = (new Date()).getTime();
-	source += "&_=" + timestamp;
-	$(".Information_Display #Stream").attr("src", source);
+	$.ajax({
+		type: "GET",
+		url: ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val(),
+		success: function (data) {
+			const image = $(".Information_Display #Stream");
+			data = JSON.parse(data);
+			image.attr("src", "data:image/jpeg;base64," + data.fileContents);
+		}
+	});
+//	timestamp = (new Date()).getTime();
+	//source += "&_=" + timestamp;
+	//$(".Information_Display #Stream").attr("src", source);
 	//console.log($(".Information_Display #Stream").attr("src"));
 	//document.getElementById("Stream").src = source// + timestamp;
 }
