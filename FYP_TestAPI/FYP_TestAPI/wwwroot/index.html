@@ -4,9 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<title>3D Printer Monitor</title>
-	<link rel="stylesheet" href="Styles.css">
+	<link rel="stylesheet" href="Style/Styles.css">
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-	<script src="site.js"></script>
+	<script src="/Scripts/site.js"></script>
 </head>
 	<body>
 		<div id="Header_Setup">
@@ -14,55 +14,52 @@
 				<H1> MK06 - 3D Printer Monitor </H1>
 			</div>
 			<div id="Header_Input_Selection">
-				<form id="Watcher_Selector">
-					<select id="Device_Selector">
-						<option value="1">d1</option>
-						<option value="2">d2</option>
-						<option value="3">d3</option>
-						<option value="4">d4</option>
-					</select>
-					<input type="button" id="Submit_Btn_Mainpage" value="Submit"/> 
+				<form id="Options" class="User_Inputs">
+					<table>
+						<tr>
+							<td>
+								<select id="Device_Selector">
+									<option value="1">d1</option>
+									<option value="2">d2</option>
+									<option value="3">d3</option>
+									<option value="4">d4</option>
+								</select>
+								<input type="button" id="Submit_Btn_Mainpage" value="Submit" />
+							</td>
+							<td>
+								<select id="Interval_Selector">
+									<option value="1000">1 second(s)</option>
+									<option value="2000">2 second(s)</option>
+									<option value="3000">3 second(s)</option>
+									<option value="4000">4 second(s)</option>
+									<option value="5000">5 second(s)</option>
+									<option value="6000">6 second(s)</option>
+									<option value="7000">7 second(s)</option>
+									<option value="8000">8 second(s)</option>
+									<option value="9000">9 second(s)</option>
+									<option value="10000">10 second(s)</option>
+								</select>
+								<input type="button" id="Interval_Btn_Mainpage" value="Submit" />
+							</td>
+						</tr>
+					</table>
 				</form>
 			</div>
 			<div id="Stream_Header_Container">
 				<h3>Camera Stream</h3>
 			</div>
 		</div>
-		<div id="Main_Body">
+		<div id="Main_Body" class="Information_Display">
 			<div id="Image_Container">
-				<img src="" id="Stream" onload="setTimeout(refreshIt,10000)"/>
+				<img src="" alt="/Stock_Image/3D_Printer.jpg" id="Stream"/>
 			</div>
 			<div id="Spacer_1">
 			</div>
 			<table id="Stats_Holder">
 				<tr>
-					<td><h3>Stats go here</h3></td>
-					<td><h3>Stats go here</h3></td>
+					<td><h1> Statitics Will Load Momentarily!</h1></td>
 				</tr>
-				<tr>
-					<td><h3>Stats go here </h3></td>
-					<td><h3>Stats go here </h3></td>
-				</tr>
-				<tr>
-					<td><h3>Stats go here </h3></td>
-					<td><h3>Stats go here </h3></td>
-				</tr>
-				<tr>
-					<td><h3>Stats go here </h3></td>
-					<td><h3>Stats go here </h3></td>
-				</tr>
-				<tr>
-					<td><h3>Stats go here </h3></td>
-					<td><h3>Stats go here </h3></td>
-				</tr>
-				<tr>
-					<td><h3>Stats go here </h3></td>
-					<td><h3>Stats go here </h3></td>
-				</tr>
-				<tr>
-					<td><h3>Stats go here </h3></td>
-					<td><h3>Stats go here </h3></td>
-				</tr>
+				
 			</table>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"

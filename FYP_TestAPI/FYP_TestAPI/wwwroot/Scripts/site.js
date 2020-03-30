@@ -1,10 +1,25 @@
-﻿const uri = "https://donal-doherty.com/api/DeviceData";
+﻿const StatsAPI = "https://donal-doherty.com/api/DeviceData";
+const ImageAPI = "https://donal-doherty.com/api/Image";
+var StatsInterval;
+var ImageInterval;
 
 $(document).ready(function () {
+
+	$("select#elem").prop(".User_Inputs #Interval_Selector", 4);
 	LoadDevices();
 	//getStats();
-	$("#Submit_Btn_Mainpage").click(function () {
+	ImageInterval = setInterval(refreshImage, 5000);
+	StatsInterval = setInterval(BuildTable, 5000)
+
+	$(".User_Inputs #Submit_Btn_Mainpage").click(function () {
 		getStats()
+	});
+
+	$(".User_Inputs #Interval_Btn_Mainpage").click(function () {
+		clearInterval(ImageInterval);
+		clearInterval(StatsInterval);
+		ImageInterval = setInterval(refreshImage, $(".User_Inputs #Interval_Selector").val());
+		StatsInterval = setInterval(BuildTable, $(".User_Inputs #Interval_Selector").val());
 	});
 });
 
@@ -16,7 +31,7 @@ function getStats() {
 		url: uri + "/GetStats",
 		headers:
 		{
-			'Device': $("#Device_Selector").val()
+			'Device': $(".User_Inputs #Device_Selector").val()
 		},
 		cache: false,
 		success: function (data)
@@ -27,23 +42,8 @@ function getStats() {
 	});
 }
 
-function TestTable(data) {
-	const tBody = $("#Stats_Holder");
-	$(tBody).empty();
-	data = JSON.parse(data);
-	$.each(data, function (key, item) {
-		const tr = $("<tr></tr>")
-			.append(
-				$("<td></td>").text(key)
-			).append(
-				$("<tr></tr>")
-			);
-		tr.appendTo(tBody);
-	});
-}
-
 function BuildTable(data) {
-	const tBody = $("#Stats_Holder");
+	const tBody = $(".Information_Display #Stats_Holder");
 
 	$(tBody).empty();
 	data = JSON.parse(data);
@@ -87,7 +87,7 @@ function LoadDevices() {
 		type: "GET",
 		url: uri + "/GetAllDevices",
 		success: function (data) {
-			const tBody = $("#Device_Selector");
+			const tBody = $(".User_Inputs #Device_Selector");
 
 			
 			$(tBody).empty();
@@ -158,11 +158,11 @@ $(".my-form").on("submit", function () {
 });*/
 
 
-function refreshIt() 
+function refreshImage() 
 {
-	console.log("Here " + $("#Device_Selector").val());
-	var source = "https://donal-doherty.com/api/image/GetImage?Device=" + $("#Device_Selector").val();
-	timestamp = (new Date()).getTime();
-	document.getElementById("Stream").src = source// + timestamp;
-	//setTimeout(refreshIt, 10000);
+	console.log("Here " + $(".User_Inputs #Device_Selector").val());
+	var source = ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val();
+	//timestamp = (new Date()).getTime();
+	$(".Information_Display #Stream").attr("src", source);
+	//document.getElementById("Stream").src = source// + timestamp;
 }

@@ -50,8 +50,7 @@ namespace FYP_TestAPI
             {
                 app.UseHsts();
             }
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            app.UseFileServer();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
