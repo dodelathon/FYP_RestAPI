@@ -31,6 +31,11 @@ th {
 	padding-right: 10px;
 }
 
+.Spacer_2 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 #Main_Body #Stats_Holder {
 	/*display: flex;*/
 	border: solid;
