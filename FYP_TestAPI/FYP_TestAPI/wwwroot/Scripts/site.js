@@ -153,7 +153,6 @@ function refreshImage()
 		url: ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val(),
 		success: function (data) {
 			const image = $(".Information_Display #Stream");
-			//data = JSON.parse(data);
 			image.attr("src", "data:image/jpeg;base64," + data.fileContents);
 		}
 	});
