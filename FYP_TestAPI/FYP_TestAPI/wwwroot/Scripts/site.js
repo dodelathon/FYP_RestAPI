@@ -28,7 +28,7 @@ $(document).ready(function () {
 function getStats() {
 	$.ajax({
 		type: "GET",
-		url: uri + "/GetStats",
+		url: StatsAPI + "/GetStats",
 		headers:
 		{
 			'Device': $(".User_Inputs #Device_Selector").val()
@@ -85,7 +85,7 @@ function BuildTable(data) {
 function LoadDevices() {
 	$.ajax({
 		type: "GET",
-		url: uri + "/GetAllDevices",
+		url: StatsAPI + "/GetAllDevices",
 		success: function (data) {
 			const tBody = $(".User_Inputs #Device_Selector");
 
