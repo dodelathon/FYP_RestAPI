@@ -1,11 +1,11 @@
-﻿const StatsAPI = "https://donal-doherty.com/api/DeviceData";
-const ImageAPI = "https://donal-doherty.com/api/Image";
+﻿const StatsAPI = "/api/DeviceData";
+const ImageAPI = "/api/Image";
 var StatsInterval;
 var ImageInterval;
 
 $(document).ready(function () {
 
-	$(".User_Inputs #Interval_Selector").prop("selectedIndex", 5);
+	$(".User_Inputs #Interval_Selector").prop("selectedIndex", 4);
 	LoadDevices();
 	//getStats();
 	ImageInterval = setInterval(refreshImage, 5000);
@@ -87,7 +87,6 @@ function LoadDevices() {
 		url: StatsAPI + "/GetAllDevices",
 		success: function (data) {
 			const tBody = $(".User_Inputs #Device_Selector");
-
 			
 			$(tBody).empty();
 			$.each(data, function (key, item)
@@ -95,7 +94,6 @@ function LoadDevices() {
 				tBody.append($("<option value=" + item.uuid + ">" + item.device_Name +"</option>"))
 			});
 
-			//todos= data;
 		}
 	});
 }
@@ -160,9 +158,9 @@ $(".my-form").on("submit", function () {
 function refreshImage() 
 {
 	var source = ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val();
-	//timestamp = (new Date()).getTime();
+	timestamp = (new Date()).getTime();
+	source += timestamp;
 	$(".Information_Display #Stream").attr("src", source);
-	$(".Information_Display #Stream").attr("alt", source);
-	console.log($(".Information_Display #Stream").attr("src"));
+	//console.log($(".Information_Display #Stream").attr("src"));
 	//document.getElementById("Stream").src = source// + timestamp;
 }
