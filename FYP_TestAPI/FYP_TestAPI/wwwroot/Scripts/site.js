@@ -1,5 +1,6 @@
 ﻿const StatsAPI = "/api/DeviceData";
 const ImageAPI = "/api/Image";
+var AlertBool = false;
 var StatsInterval;
 var ImageInterval;
 
@@ -34,42 +35,56 @@ function getStats() {
 			'Device': $(".User_Inputs #Device_Selector").val()
 		},
 		cache: false,
+		error: function (jqXHR, textStatus, errorThrown)
+		{
+			BuildTable(jqXHR.responseText, false);
+		},
 		success: function (data)
 		{
-			BuildTable(data);
+			BuildTable(data, true);
 		}
 	});
 }
 
-function BuildTable(data) {
-	const tBody = $(".Information_Display #Stats_Holder");
-
+function BuildTable(data, State) {
+	const tBody = $(".Information_Display #Stats_Table");
 	$(tBody).empty();
-	data = JSON.parse(data);
-	$.each(data, function (key, item) {
-		var tr = $("<tr></tr>").append($("<td></td>").text(key)).append($("<td></td>"));
-		tBody.append(tr)
-		$.each(item, function (Secondkey, Seconditem) {
-			tr = $("<tr></tr>");
-			if (typeof Seconditem == 'object') {
-				if (Secondkey != "history") {
-					tr.append($("<td></td>")).append($("<td></td>").text(Secondkey))
-					tBody.append(tr);
-					$.each(Seconditem, function (Thirdkey, Thirditem) {
-						tr = $("<tr></tr>")
-						tr.append($("<td></td>")).append($("<td></td>")).append($("<td></td>").text(Thirdkey))
-							.append($("<td></td>").text(Thirditem))
+
+	if (State == true)
+	{
+		data = JSON.parse(data);
+		$.each(data, function (key, item) {
+			var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
+			tBody.append(tr)
+			$.each(item, function (Secondkey, Seconditem) {
+				tr = $("<tr></tr>");
+				if (typeof Seconditem == 'object') {
+					if (Secondkey != "history") {
+						tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
 						tBody.append(tr);
-					});
+						$.each(Seconditem, function (Thirdkey, Thirditem) {
+							tr = $("<tr></tr>")
+							tr.append($("<td></td>")).append($("<td></td>")).append($("<td></td>").text(Thirdkey + ": "))
+								.append($("<td></td>").text(Thirditem))
+							tBody.append(tr);
+						});
+					}
 				}
-			}
-			else {
-				tr.append($("<td></td>")).append($("<td></td>").text(Secondkey))
-					.append($("<td></td>").text(Seconditem))
-				tBody.append(tr);
-			}
+				else {
+					tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
+						.append($("<td></td>").text(Seconditem))
+					tBody.append(tr);
+				}
+			});
 		});
-	});
+	}
+	else
+	{
+		var tr = $("<tr></tr>")
+			.append($("<td></td>"))
+			.append($("<h1></h1>").text(data));
+		tBody.append(tr)
+	}
 }
 
 function LoadDevices() {
@@ -151,14 +166,18 @@ function refreshImage()
 	$.ajax({
 		type: "GET",
 		url: ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val(),
+		error: function (jqXHR, textStatus, errorThrown){
+			const image = $(".Information_Display #Stream");
+			image.attr("src", "Stock_Image/3D_Printer.jpg");
+			if (AlertBool == false) {
+				alert(jqXHR.responseText + "\n" + "Image has been replaced with stock Image until an active source is selected!");
+				AlertBool = true;
+			}
+		},
 		success: function (data) {
 			const image = $(".Information_Display #Stream");
 			image.attr("src", "data:image/jpeg;base64," + data.fileContents);
+			AlertBool = false;
 		}
 	});
-//	timestamp = (new Date()).getTime();
-	//source += "&_=" + timestamp;
-	//$(".Information_Display #Stream").attr("src", source);
-	//console.log($(".Information_Display #Stream").attr("src"));
-	//document.getElementById("Stream").src = source// + timestamp;
 }

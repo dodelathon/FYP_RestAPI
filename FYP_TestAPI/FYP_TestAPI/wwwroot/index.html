@@ -16,10 +16,10 @@
 			<div id="Header_Input_Selection">
 				<form id="Options" class="User_Inputs">
 					<table id="Page_Options_Table">
-						<tr>
-							<td><h1>Device Selection</h1></td>
+						<tr id="Option_Headings">
+							<td><h3>Device Selection</h3></td>
 							<td class="Spacer_2"></td>
-							<td><h1>Refresh Interval Selection</h1></td>
+							<td><h3>Refresh Interval Selection</h3></td>
 						</tr>
 						<tr>
 							<td>
@@ -51,21 +51,33 @@
 					</table>
 				</form>
 			</div>
-			<div id="Stream_Header_Container">
-				<h3>Camera Stream</h3>
-			</div>
 		</div>
 		<div id="Main_Body" class="Information_Display">
-			<div id="Image_Container">
-				<img src="Stock_Image/3D_Printer.jpg" id="Stream"/>
-			</div>
-			<div id="Spacer_1">
-			</div>
-			<table id="Stats_Holder">
+			<table>
 				<tr>
-					<td><h1> Statitics Will Load Momentarily!</h1></td>
+					<td id="Stream_Header_Container">
+						<h3>Camera Stream</h3>
+					</td>
+					<td class="Spacer_1">
+					</td>
+					<td id="Stats_Header_Container">
+						<h3>Current Statistics</h3>
+					</td>
 				</tr>
-				
+				<tr>
+					<td id="Image_Container">
+						<img src="Stock_Image/3D_Printer.jpg" id="Stream" />
+					</td>
+					<td class="Spacer_1">
+					</td>
+					<td id="Stats_Holder">
+						<table id="Stats_Table">
+							<tr>
+								<td><h1> Statistics Will Load Momentarily!</h1></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
