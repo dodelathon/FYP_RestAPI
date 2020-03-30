@@ -162,6 +162,7 @@ function refreshImage()
 	var source = ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val();
 	//timestamp = (new Date()).getTime();
 	$(".Information_Display #Stream").attr("src", source);
+	$(".Information_Display #Stream").attr("alt", source);
 	console.log($(".Information_Display #Stream").attr("src"));
 	//document.getElementById("Stream").src = source// + timestamp;
 }
