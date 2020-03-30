@@ -56,5 +56,8 @@ td {
 	vertical-align: middle;
 	border: solid;
 	border-width: medium;
-	border-bottom-width:0px;
+}
+
+#Header_Setup #Header_Input_Selection #Options #Page_Options_Table {
+	border-collapse: collapse;
 }
