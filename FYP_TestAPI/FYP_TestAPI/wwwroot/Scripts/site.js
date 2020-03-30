@@ -5,11 +5,11 @@ var ImageInterval;
 
 $(document).ready(function () {
 
-	$("select#elem").prop(".User_Inputs #Interval_Selector", 5000);
+	$(".User_Inputs #Interval_Selector").prop("selectedIndex", 5);
 	LoadDevices();
 	//getStats();
 	ImageInterval = setInterval(refreshImage, 5000);
-	StatsInterval = setInterval(BuildTable, 5000)
+	StatsInterval = setInterval(getStats, 5000)
 
 	$(".User_Inputs #Submit_Btn_Mainpage").click(function () {
 		getStats()
@@ -159,9 +159,9 @@ $(".my-form").on("submit", function () {
 
 function refreshImage() 
 {
-	console.log("Here " + $(".User_Inputs #Device_Selector").val());
 	var source = ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val();
 	//timestamp = (new Date()).getTime();
 	$(".Information_Display #Stream").attr("src", source);
+	console.log($(".Information_Display #Stream").attr("src"));
 	//document.getElementById("Stream").src = source// + timestamp;
 }
