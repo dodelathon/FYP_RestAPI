@@ -158,8 +158,8 @@ $(".my-form").on("submit", function () {
 function refreshImage() 
 {
 	var source = ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val();
-	//timestamp = (new Date()).getTime();
-	//source += timestamp;
+	timestamp = (new Date()).getTime();
+	source += "&_=" + timestamp;
 	$(".Information_Display #Stream").attr("src", source);
 	//console.log($(".Information_Display #Stream").attr("src"));
 	//document.getElementById("Stream").src = source// + timestamp;
