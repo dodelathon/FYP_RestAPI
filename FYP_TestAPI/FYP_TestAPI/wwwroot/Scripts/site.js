@@ -8,11 +8,10 @@ $(document).ready(function () {
 
 	$(".User_Inputs #Interval_Selector").prop("selectedIndex", 4);
 	LoadDevices();
-	//getStats();
 	ImageInterval = setInterval(refreshImage, 5000);
 	StatsInterval = setInterval(getStats, 5000)
 
-	$(".User_Inputs #Submit_Btn_Mainpage").click(function () {
+	$(".User_Inputs #Device_Btn_Mainpage").click(function () {
 		getStats()
 	});
 

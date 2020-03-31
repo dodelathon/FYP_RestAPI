@@ -26,6 +26,10 @@ th {
 	justify-content: center;
 }
 
+#Header_Setup #Header_Input_Selection #Options #Page_Options_Table #Device_Selector {
+	justify-self:center;
+}
+
 #Stream_Header_Container {
 	display: flex;
 	flex-wrap: nowrap;
