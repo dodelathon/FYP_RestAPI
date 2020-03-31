@@ -18,7 +18,7 @@
 					<table id="Page_Options_Table">
 						<tr id="Option_Headings">
 							<td><h3>Device Selection</h3></td>
-							<td class="Spacer_2"></td>
+							<td class="Spacer_1"></td>
 							<td><h3>Refresh Interval Selection</h3></td>
 						</tr>
 						<tr>
@@ -31,7 +31,7 @@
 								</select>
 								<input type="button" id="Submit_Btn_Mainpage" value="Submit" />
 							</td>
-							<td class="Spacer_2"></td>
+							<td class="Spacer_1"></td>
 							<td>
 								<select id="Interval_Selector">
 									<option value="1000">1 second(s)</option>
@@ -53,32 +53,40 @@
 			</div>
 		</div>
 		<div id="Main_Body" class="Information_Display">
-			<table>
-				<tr>
-					<td id="Stream_Header_Container">
-						<h3>Camera Stream</h3>
-					</td>
-					<td class="Spacer_1">
-					</td>
-					<td id="Stats_Header_Container">
-						<h3>Current Statistics</h3>
-					</td>
-				</tr>
-				<tr>
-					<td id="Image_Container">
-						<img src="Stock_Image/3D_Printer.jpg" id="Stream" />
-					</td>
-					<td class="Spacer_1">
-					</td>
-					<td id="Stats_Holder">
-						<table id="Stats_Table">
-							<tr>
-								<td><h1> Statistics Will Load Momentarily!</h1></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+			<div id="Image_Section_Container" class="Body_Containers">
+				<table id="Image_Layout_Table">
+					<tr id="Header_Row_1" class="Information_Table_Headers">
+						<td id="Stream_Header_Container">
+							<h3>Camera Stream:</h3>
+						</td> 
+					</tr>
+					<tr>
+						<td id="Image_Container">
+							<img src="Stock_Image/3D_Printer.jpg" id="Stream" />
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="Spacer_1">
+			</div>
+			<div id="Stats_Section_Container" class="Body_Containers">
+				<table id="Stats_Layout_Table">
+					<tr id="Header_Row_2" class="Information_Table_Headers">
+						<td id="Stats_Header_Container">
+							<h3>Current Statistics:</h3>
+						</td>
+					</tr>
+					<tr>
+						<td id="Stats_Holder">
+							<table id="Stats_Table">
+								<tr>
+									<td><h1> Statistics Will Load Momentarily!</h1></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

@@ -37,7 +37,7 @@ th {
 	font-size: 15px;
 }
 
-.Spacer_2 {
+.Spacer_1 {
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -49,30 +49,30 @@ th {
 	justify-content: center;
 }
 
-#Main_Body .Spacer_1 {
-	padding-left: 10px;
-	padding-right: 10px;
+#Main_Body .Body_Containers {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
 }
 
-#Main_Body #Stats_Holder {
-	/*display: flex;*/
+#Main_Body #Stats_Section_Container #Stats_Layout_Table #Stats_Holder {
 	border: solid;
 	border-width: medium;
 }
 
-#Main_Body #Stats_Holder #Stats_Table {
+#Main_Body #Stats_Section_Container #Stats_Layout_Table #Stats_Holder #Stats_Table {
 	vertical-align: middle;
 	object-position: center;
 }
 
-#Main_Body #Image_Container {
+#Main_Body #Image_Section_Container #Image_Layout_Table #Image_Container {
 	height: 500px;
 	width: 500px;
 	border: solid;
 	border-width: medium;
 }
 
-#Main_Body #Image_Container #Stream {
+#Main_Body #Image_Section_Container #Image_Layout_Table #Image_Container #Stream {
 	display: flex;
 	width: 100%;
 	height: 85%;
