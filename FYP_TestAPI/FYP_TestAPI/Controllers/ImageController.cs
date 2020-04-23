@@ -32,9 +32,9 @@ namespace FYP_TestAPI.Controllers
         [HttpPost("Upload")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
-        public async Task<IActionResult> RecieveImage([FromHeader]string _Device, [FromForm]IFormFile recieved)
+        public async Task<IActionResult> RecieveImage([FromHeader]string _Device, [FromForm]IFormFile photo)
         {
-            var actual_Picture = recieved;
+            var actual_Picture = photo;
             try
             {
                 if (actual_Picture.Length > 0 && _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
