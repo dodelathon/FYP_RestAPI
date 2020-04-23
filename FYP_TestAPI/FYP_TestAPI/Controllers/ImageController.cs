@@ -52,7 +52,8 @@ namespace FYP_TestAPI.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status406NotAcceptable);
+                    
+                    return StatusCode(StatusCodes.Status406NotAcceptable, "Does not exist");
                 }
             }
             catch (NullReferenceException)
