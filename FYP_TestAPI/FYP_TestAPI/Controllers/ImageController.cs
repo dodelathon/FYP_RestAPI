@@ -32,27 +32,27 @@ namespace FYP_TestAPI.Controllers
         [HttpPost("Upload")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
-        public async Task<IActionResult> RecieveImage([FromForm]Image recieved)
+        public async Task<IActionResult> RecieveImage([FromHeader]string _Device, [FromForm]IFormFile recieved)
         {
-            var actual_Picture = recieved.photo;
+            var actual_Picture = recieved;
             try
             {
-                if (actual_Picture.Length > 0 && _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
+                if (actual_Picture.Length > 0 && _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
                 {
-                    if (!Directory.Exists(filePath + recieved._Device + "/"))
+                    if (!Directory.Exists(filePath + _Device + "/"))
                     {
-                        Directory.CreateDirectory(filePath + recieved._Device + "/");
+                        Directory.CreateDirectory(filePath + _Device + "/");
                     }
-                    using (var fileStream = new FileStream(filePath + recieved._Device + "/" + actual_Picture.FileName, FileMode.Create))
+                    using (var fileStream = new FileStream(filePath + _Device + "/" + actual_Picture.FileName, FileMode.Create))
                     {
-                        System.IO.File.SetAttributes(filePath + recieved._Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
+                        System.IO.File.SetAttributes(filePath + _Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
                         await actual_Picture.CopyToAsync(fileStream);
                     }
                     return Ok(new { status = true, message = "Photo Posted Successfully" });
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status406NotAcceptable, "Does not exist: " + _context.Exists(recieved._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) + " Name: " + recieved._Device + " or length is unsuitable: " + actual_Picture.Length);
+                    return StatusCode(StatusCodes.Status406NotAcceptable, "Does not exist: " + _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) + " Name: " + recieved._Device + " or length is unsuitable: " + actual_Picture.Length);
                 }
             }
             catch (NullReferenceException)
