@@ -68,7 +68,7 @@ namespace FYP_TestAPI.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status406NotAcceptable, actual_Stats.Length);
+                    return StatusCode(StatusCodes.Status406NotAcceptable, _Device);
                 }
             }
             catch(NullReferenceException)
