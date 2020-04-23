@@ -52,7 +52,7 @@ namespace FYP_TestAPI.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status406NotAcceptable, "Does not exist: " + _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) + " Name: " + recieved._Device + " or length is unsuitable: " + actual_Picture.Length);
+                    return StatusCode(StatusCodes.Status406NotAcceptable, "Does not exist: " + _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) + " Name: " + _Device + " or length is unsuitable: " + actual_Picture.Length);
                 }
             }
             catch (NullReferenceException)
