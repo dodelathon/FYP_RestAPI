@@ -47,21 +47,21 @@ namespace FYP_TestAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
         [HttpPost("UpdateDeviceStats")]
-        public async Task<IActionResult> UpdateStats([FromForm]DeviceStatsContainer stats)
+        public async Task<IActionResult> UpdateStats([FromHeader] string _Device, IFormFile StatsFile)
         {
 
             try
             {
-                var actual_Stats = stats.StatsFile;
-                if (actual_Stats.Length > 0 && _context.Exists(stats._Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
+                var actual_Stats = StatsFile;
+                if (actual_Stats.Length > 0 && _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
                 {
-                    if (!Directory.Exists(filePath + stats._Device + "/"))
+                    if (!Directory.Exists(filePath + _Device + "/"))
                     {
-                        Directory.CreateDirectory(filePath + stats._Device + "/");
+                        Directory.CreateDirectory(filePath + _Device + "/");
                     }
-                    using (var fileStream = new FileStream(filePath + stats._Device + "/" + actual_Stats.FileName, FileMode.Create))
+                    using (var fileStream = new FileStream(filePath + _Device + "/" + actual_Stats.FileName, FileMode.Create))
                     {
-                        System.IO.File.SetAttributes(filePath + stats._Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
+                        System.IO.File.SetAttributes(filePath + _Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
                         await actual_Stats.CopyToAsync(fileStream);
                     }
                     return Ok(new { status = true, message = "File Posted Successfully" });
