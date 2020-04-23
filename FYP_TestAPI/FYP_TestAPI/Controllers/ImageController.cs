@@ -57,7 +57,7 @@ namespace FYP_TestAPI.Controllers
             }
             catch (NullReferenceException)
             {
-                return StatusCode(StatusCodes.Status406NotAcceptable, "No Image Detected");
+                return StatusCode(StatusCodes.Status406NotAcceptable, "No Image Detected, Length: " + actual_Picture.Length);
             }
 
         }
