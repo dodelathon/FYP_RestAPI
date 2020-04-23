@@ -32,7 +32,7 @@ namespace FYP_TestAPI.Controllers
         [HttpPost("Upload")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
-        public async Task<IActionResult> RecieveImage([FromHeader]string _Device, [FromForm]IFormFile photo)
+        public async Task<IActionResult> RecieveImage([FromHeader]string _Device, IFormFile photo)
         {
             var actual_Picture = photo;
             try
