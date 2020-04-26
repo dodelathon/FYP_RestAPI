@@ -160,8 +160,9 @@ namespace FYP_TestAPI.Models.Contexts
                         conn.Close();
                         complete = true;
                     }
-                    catch
+                    catch(Exception e)
                     {
+                        Console.WriteLine(e.Message + "\n" + e.StackTrace);
                         complete = false;
                     }
                 }
