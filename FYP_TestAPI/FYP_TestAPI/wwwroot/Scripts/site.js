@@ -53,6 +53,7 @@ function BuildTable(data, State) {
 	{
 		data = JSON.parse(data);
 		$.each(data, function (key, item) {
+			print(item);
 			var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
 			tBody.append(tr)
 			if (typeof item == 'object') {
@@ -74,14 +75,13 @@ function BuildTable(data, State) {
 					}
 					else {
 						tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
-							.append($("<td></td>").text(Seconditem))
+							.append($("<td></td>").text(Seconditem));
 						tBody.append(tr);
 					}
 				});
 			}
 			else {
-				var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
-				tr.append($("<td></td>").text(item)).append($("<td></td>"));
+				var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>").text(item));
 				tBody.append(tr)
 			}
 		});
