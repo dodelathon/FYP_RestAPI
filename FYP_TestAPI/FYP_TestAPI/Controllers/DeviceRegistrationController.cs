@@ -91,11 +91,21 @@ namespace FYP_TestAPI.Controllers
             {
                 if (Directory.Exists(StatsfilePath + UUID + "/"))
                 {
+                    var files = Directory.GetFiles(StatsfilePath + UUID + "/");
+                    foreach(string x in files)
+                    {
+                        System.IO.File.Delete(x);
+                    }
                     Directory.Delete(StatsfilePath + UUID + "/");
                 }
 
                 if (Directory.Exists(ImagefilePath + UUID + "/"))
                 {
+                    var files = Directory.GetFiles(ImagefilePath + UUID + "/");
+                    foreach (string x in files)
+                    {
+                        System.IO.File.Delete(x);
+                    }
                     Directory.Delete(ImagefilePath + UUID + "/");
                 }
 
