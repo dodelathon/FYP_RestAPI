@@ -69,7 +69,7 @@ namespace FYP_TestAPI.Controllers
         {
             if (!(Directory.Exists(filePath + "/" + Device + "/")))
             { 
-                return NotFound("Device is not Registered!");
+                return NotFound("Device is not Sending Images");
             }
             else
             {

@@ -18,13 +18,15 @@ namespace FYP_TestAPI.Controllers
     public class DeviceRegistrationController : ControllerBase
     {
         private IHostingEnvironment hostingEnvironment;
-        private string filePath;
+        private string StatsfilePath;
+        private string ImagefilePath;
         private readonly ConnectedDevicesContext _context;
         public DeviceRegistrationController(ConnectedDevicesContext context, IHostingEnvironment env)
         {
             _context = context;
             hostingEnvironment = env;
-            filePath = "wwwroot/Stats/";
+            StatsfilePath = "wwwroot/Stats/";
+            ImagefilePath = "wwwroot/images/";
         }
        
         // GET: api/<controller>
@@ -87,9 +89,14 @@ namespace FYP_TestAPI.Controllers
         {
             try
             {
-                if (Directory.Exists(filePath + UUID + "/"))
+                if (Directory.Exists(StatsfilePath + UUID + "/"))
                 {
-                    Directory.Delete(filePath + UUID + "/");
+                    Directory.Delete(StatsfilePath + UUID + "/");
+                }
+
+                if (Directory.Exists(ImagefilePath + UUID + "/"))
+                {
+                    Directory.Delete(ImagefilePath + UUID + "/");
                 }
 
                 if (_context.RemoveDevice(UUID) == true)
