@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FYP_TestAPI.Models.Contexts;
 using FYP_TestAPI.Models.Containers;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,10 +17,14 @@ namespace FYP_TestAPI.Controllers
     [ApiController]
     public class DeviceRegistrationController : ControllerBase
     {
+        private IHostingEnvironment hostingEnvironment;
+        private string filePath;
         private readonly ConnectedDevicesContext _context;
-        public DeviceRegistrationController(ConnectedDevicesContext context)
+        public DeviceRegistrationController(ConnectedDevicesContext context, IHostingEnvironment env)
         {
             _context = context;
+            hostingEnvironment = env;
+            filePath = "wwwroot/Stats/";
         }
        
         // GET: api/<controller>
@@ -73,16 +79,33 @@ namespace FYP_TestAPI.Controllers
             }
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPost("RemoveDevice")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult RemoveDevice([FromForm]string UUID)
         {
-        }
+            try
+            {
+                if (Directory.Exists(filePath + UUID + "/"))
+                {
+                    Directory.Delete(filePath + UUID + "/");
+                }
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+                if (_context.RemoveDevice(UUID) == true)
+                {
+                    return Ok("Device Successully Removed!");
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Internal Error Has Occured While Deleting Device!");
+                }
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message + "\n" + e.StackTrace);
+            }
         }
     }
 }

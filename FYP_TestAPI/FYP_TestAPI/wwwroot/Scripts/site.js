@@ -55,27 +55,37 @@ function BuildTable(data, State) {
 		$.each(data, function (key, item) {
 			var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
 			tBody.append(tr)
-			$.each(item, function (Secondkey, Seconditem) {
-				tr = $("<tr></tr>");
-				if (typeof Seconditem == 'object') {
-					if (Secondkey != "history") {
-						tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
-						tBody.append(tr);
-						$.each(Seconditem, function (Thirdkey, Thirditem) {
-							tr = $("<tr></tr>")
-							tr.append($("<td></td>")).append($("<td></td>")).append($("<td></td>").text(Thirdkey + ": "))
-								.append($("<td></td>").text(Thirditem))
+			if (typeof item == 'object') {
+				var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
+				tBody.append(tr)
+				$.each(item, function (Secondkey, Seconditem) {
+					tr = $("<tr></tr>");
+					if (typeof Seconditem == 'object') {
+						if (Secondkey != "history") {
+							tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
 							tBody.append(tr);
-						});
+							$.each(Seconditem, function (Thirdkey, Thirditem) {
+								tr = $("<tr></tr>")
+								tr.append($("<td></td>")).append($("<td></td>")).append($("<td></td>").text(Thirdkey + ": "))
+									.append($("<td></td>").text(Thirditem))
+								tBody.append(tr);
+							});
+						}
 					}
-				}
-				else {
-					tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
-						.append($("<td></td>").text(Seconditem))
-					tBody.append(tr);
-				}
-			});
+					else {
+						tr.append($("<td></td>")).append($("<td></td>").text(Secondkey + ": "))
+							.append($("<td></td>").text(Seconditem))
+						tBody.append(tr);
+					}
+				});
+			}
+			else {
+				var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
+				tr.append($("<td></td>").text(item)).append($("<td></td>"));
+				tBody.append(tr)
+			}
 		});
+
 	}
 	else
 	{

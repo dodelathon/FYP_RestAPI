@@ -49,7 +49,6 @@ namespace FYP_TestAPI.Controllers
         [HttpPost("UpdateDeviceStats")]
         public async Task<IActionResult> UpdateStats([FromHeader] string _Device, IFormFile StatsFile)
         {
-
             try
             {
                 var actual_Stats = StatsFile;

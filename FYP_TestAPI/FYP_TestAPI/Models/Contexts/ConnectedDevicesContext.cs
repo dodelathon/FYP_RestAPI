@@ -95,7 +95,6 @@ namespace FYP_TestAPI.Models.Contexts
                     {
                         while (reader.Read())
                         {
-                            Console.WriteLine("result found");
                             retval = new FeederDevice
                             {
                                 DeviceID = Convert.ToInt32(reader["DeviceID"]),
@@ -125,7 +124,6 @@ namespace FYP_TestAPI.Models.Contexts
                 {
                     try
                     {
-                        Console.WriteLine("Beginning Insertion");
                         conn.Open();
                         MySqlCommand cmd = new MySqlCommand("INSERT INTO Connected_Devices VALUES(default, @_Name, @_UUID);", conn);
                         cmd.Parameters.AddWithValue("_UUID", DevUUID);
@@ -140,6 +138,37 @@ namespace FYP_TestAPI.Models.Contexts
                         complete = false;
                     }
                 }
+            }
+            return complete;
+        }
+
+        public bool RemoveDevice(string DevUUID)
+        {
+            bool complete = false;
+            FeederDevice temp = GetDevice(DevUUID, DatabaseGetMode.UUID);
+            if (temp != null)
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    try
+                    {
+                        conn.Open();
+                        MySqlCommand cmd = new MySqlCommand("Delete from Connected_Devices where UUID=_UUID);", conn);
+                        cmd.Parameters.AddWithValue("_UUID", DevUUID);
+                        cmd.Prepare();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                        complete = true;
+                    }
+                    catch
+                    {
+                        complete = false;
+                    }
+                }
+            }
+            else
+            {
+                complete = true;
             }
             return complete;
         }

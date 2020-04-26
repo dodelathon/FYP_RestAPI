@@ -35,7 +35,7 @@ namespace FYP_TestAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Add(new ServiceDescriptor(typeof(ConnectedDevicesContext), new ConnectedDevicesContext(Configuration.GetConnectionString("DefaultConnection"))));
-            //services.Add(new ServiceDescriptor(typeof(DatabaseContext), new DatabaseContext(Configuration.GetConnectionString("Cs4227Connection"))));
+    
             services.AddMvc().AddControllersAsServices();
         }
 
