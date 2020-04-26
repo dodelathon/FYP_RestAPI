@@ -53,9 +53,7 @@ function BuildTable(data, State) {
 	{
 		data = JSON.parse(data);
 		$.each(data, function (key, item) {
-			console.log(item);
-			var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
-			tBody.append(tr)
+
 			if (typeof item == 'object') {
 				var tr = $("<tr></tr>").append($("<td></td>").text(key + ": ")).append($("<td></td>"));
 				tBody.append(tr)
