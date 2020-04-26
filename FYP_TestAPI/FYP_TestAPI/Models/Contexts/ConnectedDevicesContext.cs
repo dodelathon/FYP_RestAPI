@@ -153,7 +153,7 @@ namespace FYP_TestAPI.Models.Contexts
                     try
                     {
                         conn.Open();
-                        MySqlCommand cmd = new MySqlCommand("Delete from Connected_Devices where UUID=\"_UUID\");", conn);
+                        MySqlCommand cmd = new MySqlCommand("Delete from Connected_Devices where UUID=@_UUID);", conn);
                         cmd.Parameters.AddWithValue("_UUID", DevUUID);
                         cmd.Prepare();
                         cmd.ExecuteNonQuery();
