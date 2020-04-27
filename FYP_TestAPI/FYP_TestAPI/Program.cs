@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 
 namespace FYP_TestAPI
 {
+
+    /* Main program for the API
+     */
     public class Program
     {
         public static void Main(string[] args)

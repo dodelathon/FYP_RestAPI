@@ -11,10 +11,12 @@ using Microsoft.AspNetCore.Hosting;
 using System.Net.Http;
 using System.Text;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FYP_TestAPI.Controllers
 {
+
+    /* This class manages the submission and retrival of device statistics.
+     */
     [Route("api/DeviceData/")]
     [ApiController]
     public class DeviceDataController : ControllerBase
@@ -22,6 +24,8 @@ namespace FYP_TestAPI.Controllers
         private IHostingEnvironment hostingEnvironment;
         private string filePath;
         private readonly ConnectedDevicesContext _context;
+
+        //Constructor, requires reference to the database context, and hosting environment, Sets File paths
         public DeviceDataController(ConnectedDevicesContext context, IHostingEnvironment env)
         {
             _context = context;
@@ -29,6 +33,7 @@ namespace FYP_TestAPI.Controllers
             filePath = "wwwroot/Stats/";
         }
 
+        // Returns a list of all the devices that have been registered.
         [HttpGet("GetAllDevices")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -44,6 +49,7 @@ namespace FYP_TestAPI.Controllers
             }
         }
 
+        //Requires a UUID and a File containing the Statistic information. Saves the file for later retrieval 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
         [HttpPost("UpdateDeviceStats")]
@@ -51,6 +57,7 @@ namespace FYP_TestAPI.Controllers
         {
             try
             {
+                //Checks the file length and if the device exist before saving the file to the server.
                 var actual_Stats = StatsFile;
                 if (actual_Stats.Length > 0 && _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
                 {
@@ -58,6 +65,8 @@ namespace FYP_TestAPI.Controllers
                     {
                         Directory.CreateDirectory(filePath + _Device + "/");
                     }
+
+                    //Creates and stores the file.
                     using (var fileStream = new FileStream(filePath + _Device + "/" + actual_Stats.FileName, FileMode.Create))
                     {
                         System.IO.File.SetAttributes(filePath + _Device + "/" + actual_Stats.FileName, FileAttributes.Normal);
@@ -75,7 +84,7 @@ namespace FYP_TestAPI.Controllers
                 return StatusCode(StatusCodes.Status406NotAcceptable, "No File Detected! ");
             }
         }
-
+        //Method returns the information inside the Stats file. 
         [HttpGet("GetStats")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -88,6 +97,8 @@ namespace FYP_TestAPI.Controllers
             else
             {
                 Console.WriteLine(Device);
+
+                //Iterates through the file to create a string as returning a JSON file created issues.
                 var stats = System.IO.File.ReadLines(filePath + "/" + Device + "/" + "Stats.json");
                 string retVal = "";
                 foreach(string x in stats)
@@ -95,7 +106,6 @@ namespace FYP_TestAPI.Controllers
                     retVal += x + "\n";
                 }
                 return Ok(retVal);
-                //return Ok(stats);
             }
         }
     }

@@ -6,21 +6,28 @@ using MySql.Data.MySqlClient;
 using FYP_TestAPI.Models.Containers;
 
 namespace FYP_TestAPI.Models.Contexts
-{
+{   
+    /* This class describes the interactions available with the Database
+    */
     public class ConnectedDevicesContext
     {
+
+        //Enum to describe the type of interaction to perform
         public enum DatabaseGetMode
         {
             UUID,
             Name
         }
+
         public string ConnectionString { get; set; }
 
+        //Constructor to set connection string. 
         public ConnectedDevicesContext(string cString)
         {
             ConnectionString = cString;
         }
 
+        //Creates a MySQL connection and returns it.
         private MySqlConnection GetConnection()
         {
             try
@@ -33,6 +40,7 @@ namespace FYP_TestAPI.Models.Contexts
             }
         }
 
+        //Returns a list of all the all the devices in the database.
         public List<FeederDevice> GetAllDevices()
         {
             List<FeederDevice> list = null;
@@ -70,6 +78,7 @@ namespace FYP_TestAPI.Models.Contexts
             return list;
         }
 
+        //Uses the enum to find and return a device by searching via UUID or Name
         public FeederDevice GetDevice(string Device_Val, DatabaseGetMode mode)
         {
             FeederDevice retval = null;
@@ -114,6 +123,7 @@ namespace FYP_TestAPI.Models.Contexts
             return retval;
         }
 
+        //Adds a device to the database, requires both a Name and UUID
         public bool AddDevice(string DevName, string DevUUID)
         {
             bool complete = false;
@@ -142,6 +152,7 @@ namespace FYP_TestAPI.Models.Contexts
             return complete;
         }
 
+        //Removes a device from the database via UUID
         public bool RemoveDevice(string DevUUID)
         {
             bool complete = false;
@@ -174,6 +185,7 @@ namespace FYP_TestAPI.Models.Contexts
             return complete;
         }
 
+        //Wrapper method for GetDevice, returns bool depending on if a device is found.
         public bool Exists(string Device_Val, DatabaseGetMode mode)
         {
             FeederDevice res = GetDevice(Device_Val, mode);

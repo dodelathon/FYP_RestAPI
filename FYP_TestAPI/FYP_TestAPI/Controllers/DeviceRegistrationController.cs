@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace FYP_TestAPI.Controllers
 {
+    /* Class contains the Device registration functionality. 
+     */
     [Route("api/DeviceRegistration/")]
     [ApiController]
     public class DeviceRegistrationController : ControllerBase
@@ -21,6 +23,8 @@ namespace FYP_TestAPI.Controllers
         private string StatsfilePath;
         private string ImagefilePath;
         private readonly ConnectedDevicesContext _context;
+
+        //Constructor, requires reference to the database context, and hosting environment, Sets File paths
         public DeviceRegistrationController(ConnectedDevicesContext context, IHostingEnvironment env)
         {
             _context = context;
@@ -29,7 +33,7 @@ namespace FYP_TestAPI.Controllers
             ImagefilePath = "wwwroot/images/";
         }
        
-        // GET: api/<controller>
+        //Method returns if a device is registered, Requires the devices name.
         [HttpGet("IsRegistered")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -55,7 +59,7 @@ namespace FYP_TestAPI.Controllers
         }
 
 
-        // POST api/<controller>
+        // Method that allows a device to be registered, requires a name, and returns a UUID for the device.
         [HttpPost("Register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -81,6 +85,7 @@ namespace FYP_TestAPI.Controllers
             }
         }
 
+        // Method to remove a device, Requires the UUID, will remove all server side paths/files related to the device, and the database entry.
         [HttpPost("RemoveDevice")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -89,6 +94,7 @@ namespace FYP_TestAPI.Controllers
         {
             try
             {
+                //Checks and removes the statistics files and paths if they exist.
                 if (Directory.Exists(StatsfilePath + UUID + "/"))
                 {
                     var files = Directory.GetFiles(StatsfilePath + UUID + "/");
@@ -99,6 +105,7 @@ namespace FYP_TestAPI.Controllers
                     Directory.Delete(StatsfilePath + UUID + "/");
                 }
 
+                //Checks and removes the image files and paths if they exist.
                 if (Directory.Exists(ImagefilePath + UUID + "/"))
                 {
                     var files = Directory.GetFiles(ImagefilePath + UUID + "/");
@@ -109,6 +116,7 @@ namespace FYP_TestAPI.Controllers
                     Directory.Delete(ImagefilePath + UUID + "/");
                 }
 
+                // Removes the device form the database, else returns that there was a databse issue.
                 if (_context.RemoveDevice(UUID) == true)
                 {
                     return Ok("Device Successully Removed!");

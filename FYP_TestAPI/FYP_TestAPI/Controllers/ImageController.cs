@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace FYP_TestAPI.Controllers
 {
+    /* This class manages the submission and retrival of device Images.
+    */
     [Route("api/Image/")]
     [ApiController]
     public class ImageController : ControllerBase
@@ -20,6 +22,7 @@ namespace FYP_TestAPI.Controllers
         private string filePath;
         private ConnectedDevicesContext _context;
 
+        //Constructor, requires reference to the database context, and hosting environment, Sets File paths
         public ImageController(ConnectedDevicesContext conn, IHostingEnvironment env)
         {
             hostingEnvironment = env;
@@ -28,7 +31,7 @@ namespace FYP_TestAPI.Controllers
             //Console.WriteLine(env.EnvironmentName);
         }
 
-        // POST: api/Imag
+        //Requires a UUID and a File containing the Image. Saves the Image for later retrieval 
         [HttpPost("Upload")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
@@ -37,12 +40,15 @@ namespace FYP_TestAPI.Controllers
             var actual_Picture = photo;
             try
             {
+                //Checks the file length and if the device exist before saving the file to the server.
                 if (actual_Picture.Length > 0 && _context.Exists(_Device, ConnectedDevicesContext.DatabaseGetMode.UUID) == true)
                 {
                     if (!Directory.Exists(filePath + _Device + "/"))
                     {
                         Directory.CreateDirectory(filePath + _Device + "/");
                     }
+
+                    //Creates and stores the file.
                     using (var fileStream = new FileStream(filePath + _Device + "/" + actual_Picture.FileName, FileMode.Create))
                     {
                         System.IO.File.SetAttributes(filePath + _Device + "/" + actual_Picture.FileName, FileAttributes.Normal);
@@ -62,6 +68,7 @@ namespace FYP_TestAPI.Controllers
 
         }
 
+        //Method requires a UUID, and returns the most recent image recieved for a device.
         [HttpGet("GetImage")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -73,6 +80,7 @@ namespace FYP_TestAPI.Controllers
             }
             else
             {
+                //Writes the image data into a byte array to be returned and then parsed back into an image.
                 Console.WriteLine(Device);
                 byte[] image = System.IO.File.ReadAllBytes(filePath + "/" + Device + "/" + "image.jpg");
                 return Ok(File(image, "image/jpeg"));

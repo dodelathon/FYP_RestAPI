@@ -3,18 +3,23 @@ const ImageAPI = "/api/Image";
 var AlertBool = false;
 var StatsInterval;
 var ImageInterval;
+var Selected_Device
 
 $(document).ready(function () {
 
 	$(".User_Inputs #Interval_Selector").prop("selectedIndex", 4);
 	LoadDevices();
 	ImageInterval = setInterval(refreshImage, 5000);
-	StatsInterval = setInterval(getStats, 5000)
+	StatsInterval = setInterval(getStats, 5000);
+	setInterval(LoadDevices(), 5000);
 
+	//Provides the functionality for the device submission button.
 	$(".User_Inputs #Device_Btn_Mainpage").click(function () {
-		getStats()
+		AlertBool = false;
+		Selected_Device = $(".User_Inputs #Device_Selector").val();
+		getStats();
 	});
-
+	// Gives the functionality to the Interval Button.
 	$(".User_Inputs #Interval_Btn_Mainpage").click(function () {
 		clearInterval(ImageInterval);
 		clearInterval(StatsInterval);
@@ -24,14 +29,14 @@ $(document).ready(function () {
 });
 
 
-
+//Function attempts to get statistics for the selected device.
 function getStats() {
 	$.ajax({
 		type: "GET",
 		url: StatsAPI + "/GetStats",
 		headers:
 		{
-			'Device': $(".User_Inputs #Device_Selector").val()
+			'Device': Selected_Device
 		},
 		cache: false,
 		error: function (jqXHR, textStatus, errorThrown)
@@ -45,6 +50,8 @@ function getStats() {
 	});
 }
 
+//This function either builds the table containing the JSON information, 
+//Or displays the error recieved from the server
 function BuildTable(data, State) {
 	const tBody = $(".Information_Display #Stats_Table");
 	$(tBody).empty();
@@ -94,6 +101,7 @@ function BuildTable(data, State) {
 	}
 }
 
+//This function loads the Device selector dropdown with the registered devices on the server.
 function LoadDevices() {
 	$.ajax({
 		type: "GET",
@@ -168,11 +176,12 @@ $(".my-form").on("submit", function () {
 });*/
 
 
+// This function Displays the most recent image of a device, or alerts the user that no images have been sent.
 function refreshImage() 
 {
 	$.ajax({
 		type: "GET",
-		url: ImageAPI + "/GetImage?Device=" + $(".User_Inputs #Device_Selector").val(),
+		url: ImageAPI + "/GetImage?Device=" + Selected_Device,
 		error: function (jqXHR, textStatus, errorThrown){
 			const image = $(".Information_Display #Stream");
 			image.attr("src", "Stock_Image/3D_Printer.jpg");
