@@ -3,6 +3,7 @@ const ImageAPI = "/api/Image";
 var AlertBool = false;
 var StatsInterval;
 var ImageInterval;
+var LoadInetrval;
 var Selected_Device
 
 $(document).ready(function () {
@@ -11,7 +12,9 @@ $(document).ready(function () {
 	LoadDevices();
 	ImageInterval = setInterval(refreshImage, 5000);
 	StatsInterval = setInterval(getStats, 5000);
-	setInterval(LoadDevices(), 5000);
+	LoadInterval = setInterval(LoadDevices, 5000);
+	Selected_Device = $(".User_Inputs #Device_Selector").val();
+	getStats()
 
 	//Provides the functionality for the device submission button.
 	$(".User_Inputs #Device_Btn_Mainpage").click(function () {
