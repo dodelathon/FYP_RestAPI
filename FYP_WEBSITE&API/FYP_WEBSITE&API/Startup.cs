@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using FYP_TestAPI.Models.Containers;
-using FYP_TestAPI.Models.Contexts;
-using Microsoft.AspNetCore.HttpsPolicy;
+using FYP_3DPrinterMonitor.Models.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace FYP_TestAPI
+namespace FYP_3DPrinterMonitor
 {
     public class Startup
     {

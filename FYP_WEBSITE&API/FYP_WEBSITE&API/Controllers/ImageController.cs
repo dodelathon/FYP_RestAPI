@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using FYP_TestAPI.Models.Containers;
-using FYP_TestAPI.Models.Contexts;
+using FYP_3DPrinterMonitor.Models.Contexts;
 using Microsoft.AspNetCore.Http;
 
-namespace FYP_TestAPI.Controllers
+namespace FYP_3DPrinterMonitor.Controllers
 {
     /* This class manages the submission and retrival of device Images.
     */

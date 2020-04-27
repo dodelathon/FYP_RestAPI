@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using FYP_TestAPI.Models.Containers;
+using FYP_3DPrinterMonitor.Models.Containers;
 
-namespace FYP_TestAPI.Models.Contexts
-{   
+namespace FYP_3DPrinterMonitor.Models.Contexts
+{
     /* This class describes the interactions available with the Database
     */
     public class ConnectedDevicesContext

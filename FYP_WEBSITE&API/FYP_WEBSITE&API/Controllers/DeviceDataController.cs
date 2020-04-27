@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using FYP_TestAPI.Models.Contexts;
-using FYP_TestAPI.Models.Containers;
+using FYP_3DPrinterMonitor.Models.Contexts;
+using FYP_3DPrinterMonitor.Models.Containers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using System.Net.Http;
-using System.Text;
 
 
-namespace FYP_TestAPI.Controllers
+namespace FYP_3DPrinterMonitor.Controllers
 {
 
     /* This class manages the submission and retrival of device statistics.

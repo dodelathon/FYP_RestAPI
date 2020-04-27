@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using FYP_TestAPI.Models.Contexts;
-using FYP_TestAPI.Models.Containers;
+using FYP_3DPrinterMonitor.Models.Contexts;
+using FYP_3DPrinterMonitor.Models.Containers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FYP_TestAPI.Controllers
+namespace FYP_3DPrinterMonitor.Controllers
 {
     /* Class contains the Device registration functionality. 
      */
