@@ -15,14 +15,12 @@ namespace FYP_3DPrinterMonitor.Controllers
     public class ImageController : ControllerBase
     {
 
-        private IHostingEnvironment hostingEnvironment;
         private string filePath;
         private ConnectedDevicesContext _context;
 
         //Constructor, requires reference to the database context, and hosting environment, Sets File paths
-        public ImageController(ConnectedDevicesContext conn, IHostingEnvironment env)
+        public ImageController(ConnectedDevicesContext conn)
         {
-            hostingEnvironment = env;
             filePath = "wwwroot/images/";
             _context = conn;
             //Console.WriteLine(env.EnvironmentName);

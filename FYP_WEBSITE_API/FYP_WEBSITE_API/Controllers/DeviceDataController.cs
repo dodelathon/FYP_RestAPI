@@ -18,15 +18,13 @@ namespace FYP_3DPrinterMonitor.Controllers
     [ApiController]
     public class DeviceDataController : ControllerBase
     {
-        private IHostingEnvironment hostingEnvironment;
         private string filePath;
         private readonly ConnectedDevicesContext _context;
 
         //Constructor, requires reference to the database context, and hosting environment, Sets File paths
-        public DeviceDataController(ConnectedDevicesContext context, IHostingEnvironment env)
+        public DeviceDataController(ConnectedDevicesContext context)
         {
             _context = context;
-            hostingEnvironment = env;
             filePath = "wwwroot/Stats/";
         }
 
