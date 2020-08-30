@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FYP_WEBSITE_API", "FYP_WEBSITE_API\FYP_WEBSITE_API.csproj", "{E3D35236-1793-41DC-99C3-F5F30C6B0455}"
 EndProject

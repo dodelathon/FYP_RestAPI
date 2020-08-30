@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Google.Protobuf.WellKnownTypes;
 
 namespace FYP_3DPrinterMonitor
 {
     public class Startup
     {
-        public Startup(IWebHostEnvironment env, IConfiguration config)
+        public Startup(IWebHostEnvironment env)
         {
             //Adds the settings files into the program to be used later.
             var builder = new ConfigurationBuilder()
@@ -26,9 +27,9 @@ namespace FYP_3DPrinterMonitor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.Add(new ServiceDescriptor(typeof(ConnectedDevicesContext), new ConnectedDevicesContext(Configuration.GetConnectionString("DefaultConnection"))));
-            services.AddRazorPages();
             services.AddMvc().AddControllersAsServices();
         }
 
@@ -49,12 +50,8 @@ namespace FYP_3DPrinterMonitor
             app.UseFileServer();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseMvcWithDefaultRoute();
+
 
         }
     }
