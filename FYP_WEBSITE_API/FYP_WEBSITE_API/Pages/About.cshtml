@@ -1,10 +1,21 @@
 ﻿@page
 @model AboutModel
 @{
-    ViewData["Title"] = "About Me";
+	ViewData["Title"] = "About Me";
+	DateTime today = DateTime.Today;
+	int birth = 1998;
+	int year = today.Year;
+	int age = year - birth;
+	
 }
-<div class="text-center">
-    <h1 class="card-header-pills">@ViewData["Title"]</h1>
 
-    <p>Bio incoming.....</p>
+<div class="text-center">
+	<h1 class="card-header">@ViewData["Title"]</h1>
+	<p>Hiya, My name is Dónal Doherty, I'm @(age), and I'm from Limerick, Ireland. I'm a graduate from UL, having finished my Bachelor in computer games development.</p>
+	
+	<hr/>
+		<h2 class="text-center">Hobbies/Interests</h2>
+	<hr/>	
+
+	<p>My main interests are anything and everything computer related. This ranges from coding, to hardware, to games and even the odd run in with micro-controllers like the arduino.</p>
 </div>
