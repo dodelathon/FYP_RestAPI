@@ -82,7 +82,7 @@ body {
 @media (min-width:240px) {
 	.FYP_container {
 		width: 300px;
-		height: auto;
+		height: 800px;
 		max-width: 320px
 	}
 }
@@ -90,7 +90,7 @@ body {
 @media (min-width:576px) {
 	.FYP_container {
 		width:500px;
-		height:200px;
+		height:800px;
 		max-width: 540px
 	}
 }
@@ -98,7 +98,7 @@ body {
 @media (min-width:768px) {
 	.FYP_container {
 		width:700px;
-		height:300px;
+		height:800px;
 		max-width: 720px
 	}
 }
@@ -106,7 +106,7 @@ body {
 @media (min-width:992px) {
 	.FYP_container {
 		width:900px;
-		height:350px;
+		height:800px;
 		max-width: 960px
 	}
 }
