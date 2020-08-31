@@ -79,26 +79,42 @@ body {
 	width:auto;
 }
 
+@media (min-width:240px) {
+	.FYP_container {
+		width: 300px;
+		height: auto;
+		max-width: 320px
+	}
+}
+
 @media (min-width:576px) {
 	.FYP_container {
+		width:500px;
+		height:200px;
 		max-width: 540px
 	}
 }
 
 @media (min-width:768px) {
 	.FYP_container {
+		width:700px;
+		height:300px;
 		max-width: 720px
 	}
 }
 
 @media (min-width:992px) {
 	.FYP_container {
+		width:900px;
+		height:350px;
 		max-width: 960px
 	}
 }
 
 @media (min-width:1200px) {
 	.FYP_container {
+		width:1100px;
+		height:800px;
 		max-width: 1140px
 	}
 }
