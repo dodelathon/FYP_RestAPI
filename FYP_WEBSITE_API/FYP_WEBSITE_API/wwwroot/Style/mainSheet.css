@@ -72,3 +72,33 @@ body {
 	white-space: nowrap;
 	line-height: 60px; /* Vertically center the text there */
 }
+
+.FYP_container {
+	margin-left:auto;
+	height:auto;
+	width:auto;
+}
+
+@media (min-width:576px) {
+	.FYP_container {
+		max-width: 540px
+	}
+}
+
+@media (min-width:768px) {
+	.FYP_container {
+		max-width: 720px
+	}
+}
+
+@media (min-width:992px) {
+	.FYP_container {
+		max-width: 960px
+	}
+}
+
+@media (min-width:1200px) {
+	.FYP_container {
+		max-width: 1140px
+	}
+}
